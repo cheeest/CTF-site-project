@@ -15,11 +15,12 @@
 
     <div class="container">
         <div class="info1 divv" >
-            <p class="simpletext">разделы:</p>
+            <p class="simpletext">Разделы заданий:</p>
             <nav class="navbtn">
                 <a href="{{ url_for('sql') }}" class="btn1">sql пипка</a>
                 <a href="{{ url_for('found') }}" class="btn1">forensic</a>
                 <a href="{{ url_for('decode') }}" class="btn1">encode and decode</a>
+
                 <!--    <a href="">rfi</a>-->
                 <!--    <a href="">lfi</a>-->
             </nav>
@@ -27,11 +28,13 @@
         </div>
 
         <div class="info1 divv">
-            <p class="simpletext">вступление какое нить мб</p>
-            <p class="simpletext"> здесь вы можете oзнакомиться с попками</p>
+            <p class="simpletext">Это ресурс для обучения, где можно попробовать свои силы в самых лёгких CTF задачках. Тут предоставлены несколько заданий, при помощи которых можно понять основы (чего основы?). При нажатии на ! в левом нижнем углу будут появляться посвнения по каждому заданию. Задания каждого профиля можно перегенерировать, чтобы попробовать решать самому без подсказок.</p>
+            <p class="simpletext"> Good luck, have fun :) </p>
         </div>
-
     </div>
+
+    <img class="helpimg" src="{{ url_for('static', filename='imgs/icon.png') }}">
+
 
 
 <!-- <img src="{{ url_for('static', filename='imgs/Madoka-Kaname.webp') }}"> -->
