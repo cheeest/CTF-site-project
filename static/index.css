@@ -75,6 +75,7 @@
     height: 65%;
     padding: 0;
     border-color: #000000;
+    border: 1rem;
     border-radius: 0.7rem;
     margin-right: 0rem;
     left: calc(100% - 5rem);
@@ -92,7 +93,7 @@
 
 .decore1 {
     background-image: linear-gradient(to right, rgba(225, 225, 225, 0.8), rgba(225, 225, 225, 0.6));
-    width: 5.5%;
+    width: 4.5%;
     height: 85%;
     margin: 0;
     border-radius: 1rem;
@@ -163,11 +164,12 @@
 
 .helpimg {
     max-width: 100%;
-    width: 3.5vw;
+    width: 3vw;
     height: auto;
     margin: 2rem;
-    bottom: 10vw;
-    position: relative;
+    bottom: 1.5%;
+    left: 1.2%;
+    position: absolute;
     box-shadow: 0.4em 0.4em 0em 0px rgba(0, 0, 0, 0.8);
     transition: 0.5s;
     border-radius: 1em;

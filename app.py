@@ -18,4 +18,5 @@ def found():
 def decode():
     return render_template('decode.html')
 
+
 app.run()

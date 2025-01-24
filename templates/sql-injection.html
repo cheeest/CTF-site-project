@@ -6,19 +6,18 @@
     <title>Попакошька</title>
 </head>
 <body>
-     <div class="info divv">
-        <a href="{{ url_for('index') }}"><h1 class="header">CTF для самых маленьких</h1></a>
-        <h3 class="context">Для тех кто хотел бы разобраться, но не знает, с чего начать</h3>
-    </div>
+
+    {% include 'header.html' %}
+
     <div class="navigation divv">
         <div class="decore1"></div>
-         <nav class="navlink">
+        <nav class="navlink">
                 <a href="{{ url_for('index') }}" class="link">на главную</a>
                 <a href="{{ url_for('found') }}" class="link">forensic</a>
                 <a href="{{ url_for('decode') }}" class="link">encode and decode</a>
                 <!--    <a href="">rfi</a>-->
                 <!--    <a href="">lfi</a>-->
-            </nav>
+        </nav>
     </div>
     <img class="helpimg" src="{{ url_for('static', filename='imgs/icon.png') }}">
 </body>
