@@ -3,6 +3,25 @@
     src: url("/static/fonts/Monocraft.otf") format("opentype");
 }
 
+
+#popup-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 85%);
+  display: none;
+}
+
+#popup {
+    width: 3vw;
+    height: auto;
+    bottom: 1.5%;
+    left: 1.2%;
+    position: absolute;
+    background-color: rgb(0 0 0 / 85%);
+}
+
+
 .simpletext {
     font-family: Monocraft;
     color: white;
@@ -10,8 +29,6 @@
     line-height: 2;
     font-size: 1.1rem;
 }
-
-
 
 .header {
     text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
@@ -75,7 +92,7 @@
     height: 65%;
     padding: 0;
     border-color: #000000;
-    border: 1rem;
+    border-width: 0.4rem;
     border-radius: 0.7rem;
     margin-right: 0rem;
     left: calc(100% - 5rem);
@@ -141,6 +158,7 @@
   margin-top: 0.7rem;
   margin-bottom: 0.7rem;
   margin-left: 0;
+
 }
 .link:hover {
   transform: translate(0,-3px);
@@ -152,8 +170,8 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    margin-left: 1.5rem;
-    margin-top: 1rem;
+    margin: 1rem 1.5rem 0;
+    width: 100%;
 }
 
 .navbtn {
