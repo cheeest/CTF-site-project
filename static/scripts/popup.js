@@ -1,14 +1,26 @@
+(function(window, document, undefined) {
 
-const popupOverlay = document.getElementById("popup-overlay");
-const popup = document.getElementById("popup");
+  // code that should be taken care of right away
 
-function showPopup() {
-  popupOverlay.style.display = "block";
-}
+  window.onload = init;
 
-function hidePopup() {
-  popupOverlay.style.display = "none";
-}
+  function init(){
+    const popupOverlay = document.getElementById("popup-overlay");
+    const popup = document.getElementById("popup");
+    const help = document.getElementById("help");
 
-popupOverlay.addEventListener("click", hidePopup);
-popup.addEventListener("click", (event) => event.stopPropagation());
+    function showPopup() {
+      popupOverlay.style.display = "block";
+    }
+
+    function hidePopup() {
+      popupOverlay.style.display = "none";
+    }
+
+    help.addEventListener("click", showPopup);
+    popupOverlay.addEventListener("click", hidePopup);
+    popup.addEventListener("click", (event) => event.stopPropagation());
+  }
+
+})(window, document, undefined);
+
