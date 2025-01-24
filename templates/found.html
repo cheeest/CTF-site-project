@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
-    <meta charset="UTF-8">
-    <title>Попакошька</title>
-</head>
+    {% include 'head.html' %}
 <body>
 
     {% include 'header.html' %}
@@ -21,3 +17,4 @@
     </div>
     <img class="helpimg" src="{{ url_for('static', filename='imgs/icon.png') }}">
 </body>
+</html>
