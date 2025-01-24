@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
-    <script src="{{ url_for('static', filename='scripts/popup.js') }}"></script>
-    <meta charset="UTF-8">
-    <title>Попакошька</title>
-</head>
+    {% include 'head.html' %}
 <body>
 
     {% include 'header.html' %}
@@ -27,3 +22,4 @@
     </div>
     <img id="help" src="{{ url_for('static', filename='imgs/icon.png') }}">
 </body>
+</html>
