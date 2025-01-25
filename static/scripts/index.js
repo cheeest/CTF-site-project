@@ -5,21 +5,20 @@
   window.onload = init;
 
   function init(){
-    const popupOverlay = document.getElementById("popup-overlay");
     const popup = document.getElementById("popup");
     const help = document.getElementById("help");
 
     function showPopup() {
-      popupOverlay.style.display = "block";
+      popup.style.display = "block";
+      console.log('cat')
     }
 
     function hidePopup() {
-      popupOverlay.style.display = "none";
+      popup.style.display = "none";
     }
 
     help.addEventListener("click", showPopup);
-    popupOverlay.addEventListener("click", hidePopup);
-    popup.addEventListener("click", (event) => event.stopPropagation());
+    popup.addEventListener("click", hidePopup);
   }
 
 })(window, document, undefined);
