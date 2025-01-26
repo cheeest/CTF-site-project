@@ -12,7 +12,7 @@
         </div>
 
         <div class="sql-input divv">
-            <form action="auth-data" method="post" class="simpletext">
+            <form action="sql-injection" method="post" class="simpletext">
                 <div class="small-container" ><p>Login   : </p> <input type="text" name="login" class="inpt" /></div>
                 <div class="small-container"><p>Password:</p> <input type="password" name="pass" class="inpt"/></div>
                 <input type="submit" value="Submit" class="btn1" />
@@ -30,8 +30,17 @@
                 <!--    <a href="">lfi</a>-->
         </nav>
     </div>
+{% if error %}
+    <div id="error">
+       <p>{{ error }}</p>
+    </div>
+{% endif %}
 
-
+{% if success %}
+    <div id="success">
+       <p>{{ success }}</p>
+    </div>
+{% endif %}
     <img id="help" src="{{ url_for('static', filename='imgs/icon.png') }}">
 
 </body>
