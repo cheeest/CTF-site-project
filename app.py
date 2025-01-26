@@ -44,8 +44,8 @@ def sql():
         cursor.execute(f'SELECT * FROM Users WHERE login == "{login}" AND password == "{password}"')
         user = cursor.fetchone()
         if not user:
-            return render_template('sql-injection.html', error='catmeow')
-        return render_template('sql-injection.html', success="popacool")
+            return render_template('sql-injection.html', error='Ошибка: неверный логин или пароль')
+        return render_template('sql-injection.html', success="Вход произведён успешно!")
     return render_template('sql-injection.html')
 
 @app.route("/found-me")

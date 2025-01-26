@@ -226,17 +226,57 @@
 }
 
 #error {
-    bottom: 1.5%;
-    right: 10%;
+    bottom: 7%;
+    right: 11%;
     position: absolute;
-    background-color: red;
+    background-color: rgba(220, 20, 60, 0.5);
+    border-radius: 1rem;
+    padding: 0.1rem 1rem;
+    font-family: Monocraft;
+    color: white;
+    font-size: 1.2rem;
+    text-shadow: black 2px 2px;
+    border: dashed rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
+    animation: 2.5s show cubic-bezier(0, 0, 0.2, 1);
+    box-shadow: 0.5em 0.5em 0em 0px rgba(0, 0, 0, 0.5);
+}
+#error:hover {
+    background-color: rgba(220, 20, 60, 0.65);
+    transform: translate(0, -0.2em);
+    box-shadow: 0.7em 0.7em 0em 0px rgba(0, 0, 0, 0.65);
 }
 
+.hidden {
+    color: rgba(0,0,0,0);
+}
+
+
 #success {
-    bottom: 1.5%;
-    right: 10%;
+    bottom: 7%;
+    right: 11%;
     position: absolute;
-    background-color: green;
+    background-color: rgba(0, 255, 127, 0.5);
+    border-radius: 1rem;
+    padding: 0.1rem 1rem;
+    font-family: Monocraft;
+    color: white;
+    font-size: 1.2rem;
+    text-shadow: black 2px 2px;
+    border: dashed rgba(225, 225, 225, 1);
+    transition: 0.5s;
+    animation: 2.5s show cubic-bezier(0, 0, 0.2, 1);
+    box-shadow: 0.5em 0.5em 0em 0px rgba(0, 0, 0, 0.5);
+}
+#success:hover {
+    background-color: rgba(0, 255, 127, 0.65);
+    transform: translate(0, -0.2em);
+    box-shadow: 0.7em 0.7em 0em 0px rgba(0, 0, 0, 0.65);
+}
+
+@keyframes show {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 body {
@@ -246,7 +286,6 @@ body {
     margin: 0;
     overflow: hidden;
     background-size: cover;
-
 }
 
 a {
