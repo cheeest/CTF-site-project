@@ -41,12 +41,10 @@ def sql():
         login = request.form['login']
         password = request.form['pass']
         cursor = get_db().cursor()
-        cursor.execute(f'SELECT * FROM Users where login == "{login}"')
+        cursor.execute(f'SELECT * FROM Users WHERE login == "{login}" AND password == "{password}"')
         user = cursor.fetchone()
         if not user:
             return render_template('sql-injection.html', error='catmeow')
-        if password != user[2]:
-            return render_template('sql-injection.html', error=':p')
         return render_template('sql-injection.html', success="popacool")
     return render_template('sql-injection.html')
 
