@@ -225,6 +225,20 @@
     transform: translate(0, 0.2em);
 }
 
+#error {
+    bottom: 1.5%;
+    right: 10%;
+    position: absolute;
+    background-color: red;
+}
+
+#success {
+    bottom: 1.5%;
+    right: 10%;
+    position: absolute;
+    background-color: green;
+}
+
 body {
     background-image: url(/static/imgs/bg.gif);
     width: 100vw;

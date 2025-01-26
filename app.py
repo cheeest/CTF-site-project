@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, url_for, flash, redirect
+from flask import Flask, render_template, request, url_for, flash, redirect, g
 import sqlite3
 
-connection = sqlite3.connect('my_database.db')
+connection = sqlite3.connect('database.db')
 cursor = connection.cursor()
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS Users (
@@ -11,13 +11,25 @@ cursor.execute('''
     )
 ''')
 cursor.execute('SELECT * FROM Users where login = "admin"')
-user = cursor.fetchone()
-if not user:
+if not cursor.fetchone():
     cursor.execute('INSERT INTO Users (login, password) VALUES (?, ?)', ('admin', '12345678'))
 connection.commit()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ca4ac4ada05f91a5790d2132992bfaed86df15c4d08f2dfe'
+DATABASE = 'database.db'
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db:
+        db.close()
 
 @app.route("/")
 def index():
@@ -28,6 +40,14 @@ def sql():
     if request.method == 'POST':
         login = request.form['login']
         password = request.form['pass']
+        cursor = get_db().cursor()
+        cursor.execute(f'SELECT * FROM Users where login == "{login}"')
+        user = cursor.fetchone()
+        if not user:
+            return render_template('sql-injection.html', error='catmeow')
+        if password != user[2]:
+            return render_template('sql-injection.html', error=':p')
+        return render_template('sql-injection.html', success="popacool")
     return render_template('sql-injection.html')
 
 @app.route("/found-me")
