@@ -20,16 +20,7 @@
         </div>
     </div>
 
-    <div class="navigation divv">
-        <div class="decore1"></div>
-        <nav class="navlink">
-                <a href="{{ url_for('index') }}" class="link">на главную</a>
-                <a href="{{ url_for('found') }}" class="link">forensic</a>
-                <a href="{{ url_for('decode') }}" class="link">encode and decode</a>
-                <!--    <a href="">rfi</a>-->
-                <!--    <a href="">lfi</a>-->
-        </nav>
-    </div>
+    {% include 'sidenav.html' %}
 {% if error %}
     <div id="error">
        <p>{{ error }}</p>
