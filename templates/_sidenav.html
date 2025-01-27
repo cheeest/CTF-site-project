@@ -2,16 +2,15 @@
     <div class="decore1"></div>
     <nav class="navlink">
         <a href="{{ url_for('index') }}" class="link">на главную</a>
-    {% if request.path != url_for('sql') %}
-        <a href="{{ url_for('sql') }}" class="link">sql пипка</a>
-    {% else %}
-        <a href="{{ url_for('decode') }}" class="btn1">encode and decode</a>
+{% for link, text in (
+    ('sql', 'sql пипка'),
+    ('found', 'forensic'),
+    ('decode', 'encode and decode'),
+) %}
+    {% if request.path != url_for(link) %}
+        <a href="{{ url_for(link) }}" class="link">{{ text }}</a>
     {% endif %}
-    {% if request.path != url_for('found') %}
-        <a href="{{ url_for('found') }}" class="link">forensic</a>
-    {% else %}
-        <a href="{{ url_for('decode') }}" class="btn1">encode and decode</a>
-    {% endif %}
+{% endfor %}
 {#        <!--    <a href="">rfi</a>--> #}
 {#        <!--    <a href="">lfi</a>--> #}
     </nav>
