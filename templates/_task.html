@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+{% block head %}
+    {% include '_head.html' %}
+{% endblock %}
+
+<body>
+    {% include '_header.html' %}
+
+    {% block content %}{% endblock %}
+
+    {% include '_sidenav.html' %}
+    <img id="help" src="{{ url_for('static', filename='imgs/icon.png') }}">
+</body>
+
+</html>

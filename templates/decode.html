@@ -1,16 +1,1 @@
-<!DOCTYPE html>
-<html lang="ru">
-    {% include '_head.html' %}
-<body>
-
-    {% include '_header.html' %}
-
-    {% include '_sidenav.html' %}
-    <div id="popup-overlay">
-        <div id="popup">
-
-        </div>
-    </div>
-    <img id="help" src="{{ url_for('static', filename='imgs/icon.png') }}">
-</body>
-</html>
+{% extends '_task.html' %}
