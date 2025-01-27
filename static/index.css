@@ -238,14 +238,17 @@
     text-shadow: black 2px 2px;
     border: dashed rgba(0, 0, 0, 0.5);
     transition: 0.5s;
-    animation: 2.5s show cubic-bezier(0, 0, 0.2, 1);
     box-shadow: 0.5em 0.5em 0em 0px rgba(0, 0, 0, 0.5);
+    -webkit-animation: fadeinout 7s cubic-bezier(0, 0, 0.2, 1) forwards;
+    animation: fadeinout 7s cubic-bezier(1, 0.05, 0.5, 1) forwards;
+    opacity: 0;
 }
 #error:hover {
     background-color: rgba(220, 20, 60, 0.65);
     transform: translate(0, -0.2em);
     box-shadow: 0.7em 0.7em 0em 0px rgba(0, 0, 0, 0.65);
 }
+
 
 .hidden {
     color: rgba(0,0,0,0);
@@ -265,8 +268,10 @@
     text-shadow: black 2px 2px;
     border: dashed rgba(225, 225, 225, 1);
     transition: 0.5s;
-    animation: 2.5s show cubic-bezier(0, 0, 0.2, 1);
     box-shadow: 0.5em 0.5em 0em 0px rgba(0, 0, 0, 0.5);
+    -webkit-animation: fadeinout 7s cubic-bezier(0, 0, 0.2, 1) forwards;
+    animation: fadeinout 7s cubic-bezier(1, 0.05, 0.5, 1) forwards;
+    opacity: 0;
 }
 #success:hover {
     background-color: rgba(0, 255, 127, 0.65);
@@ -274,10 +279,18 @@
     box-shadow: 0.7em 0.7em 0em 0px rgba(0, 0, 0, 0.65);
 }
 
-@keyframes show {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@-webkit-keyframes fadeinout {
+  50% { opacity: 1; }
 }
+
+@keyframes fadeinout {
+  50% { opacity: 1; }
+}
+
+.hidden {
+    color: rgba(0,0,0,0);
+}
+
 
 body {
     background-image: url(/static/imgs/bg.gif);
