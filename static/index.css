@@ -13,7 +13,7 @@
     box-shadow: 0.27em 0.27em 0em 0px rgba(186, 65, 166, 0.6);
     border: none;
     transition: 0.3s;
-    margin: 1rem;
+    margin: 0.5rem;
     background-color: rgba(225, 225, 225, 0.99);
     border-radius: 3px;
 }
@@ -57,6 +57,7 @@
 .container {
     display: flex;
     flex-wrap: wrap;
+
 }
 
 .divv {
@@ -69,16 +70,55 @@
     margin-top: 2rem;
 }
 
-.sql-input {
+#sqlInpt {
     position: relative;
     margin: 3.5rem;
     background-color: rgb(0 0 0 / 85%);
-    padding: 2rem;
+    padding: 0.5rem 1.5rem;
     text-align: left;
+    width: 20%;
+    height: 27%;
+    transition: 1s;
+}
+.slideinInpt {
+    transition: 1s;
+    transform: translateX(345%);
+
+}
+
+.slideoutInpt {
+    transition: 1s;
+    transform: translateX(0%);
 }
 
 
-.info {
+
+.sql-guide {
+    width: 65%;
+    height: auto;
+    background-color: rgb(0 0 0/ 90%);
+    padding: 1rem;
+    margin-left: 3.5rem;
+    margin-top: 3.5rem;
+    box-shadow: 1em 1em 0em 0px rgba(186, 65, 166, 0.7);
+    transform: translateX(-165%);
+    transition: 1s;
+    position: absolute;
+}
+
+.slideinHelp {
+    transition: 1s;
+    transform: translateX(0%);
+
+}
+
+.slideoutHelp {
+    transition: 1;
+    transform: translateX(-165%);
+
+}
+
+.headerblock {
     width: 65%;
     height: 20%;
     padding: 1rem;
@@ -90,7 +130,7 @@
     transition: 0.5s;
 }
 
-.info:hover {
+.headerblock:hover {
     box-shadow: 1.5em 1.5em 0em 0px rgba(186, 65, 166, 0.7);
     padding: 1.5rem;
 }
@@ -239,8 +279,7 @@
     border: dashed rgba(0, 0, 0, 0.5);
     transition: 0.5s;
     box-shadow: 0.5em 0.5em 0em 0px rgba(0, 0, 0, 0.5);
-    -webkit-animation: fadeinout 7s cubic-bezier(0, 0, 0.2, 1) forwards;
-    animation: fadeinout 7s cubic-bezier(1, 0.05, 0.5, 1) forwards;
+    animation: fadeinout 3s cubic-bezier(1, 0.05, 0.5, 1) forwards;
     opacity: 0;
 }
 #error:hover {
@@ -269,18 +308,13 @@
     border: dashed rgba(225, 225, 225, 1);
     transition: 0.5s;
     box-shadow: 0.5em 0.5em 0em 0px rgba(0, 0, 0, 0.5);
-    -webkit-animation: fadeinout 7s cubic-bezier(0, 0, 0.2, 1) forwards;
-    animation: fadeinout 7s cubic-bezier(1, 0.05, 0.5, 1) forwards;
+    animation: fadeinout 3.5s cubic-bezier(1, 0.05, 0.5, 1) forwards;
     opacity: 0;
 }
 #success:hover {
     background-color: rgba(0, 255, 127, 0.65);
     transform: translate(0, -0.2em);
     box-shadow: 0.7em 0.7em 0em 0px rgba(0, 0, 0, 0.65);
-}
-
-@-webkit-keyframes fadeinout {
-  50% { opacity: 1; }
 }
 
 @keyframes fadeinout {

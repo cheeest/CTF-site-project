@@ -7,14 +7,23 @@
   function init(){
     const popup = document.getElementById("popup");
     const help = document.getElementById("help");
+    const sqlInpt = document.getElementById("sqlInpt");
 
     function showPopup() {
+      popup.classList.remove('slideoutHelp');
+      sqlInpt.classList.remove('slideoutInpt');
       popup.style.display = "block";
-      console.log('cat')
+      setTimeout(() => popup.classList.add('slideinHelp'), 1);
+      setTimeout(() => sqlInpt.classList.add('slideinInpt'), 1);
     }
 
     function hidePopup() {
-      popup.style.display = "none";
+      sqlInpt.classList.remove('slideinInpt');
+      popup.classList.remove('slideinHelp');
+      setTimeout(() => {popup.style.display = "none"}, 1000);
+      setTimeout(() => {popup.style.position = "absolute"}, 1000);
+      popup.classList.add('slideoutHelp');
+      sqlInpt.classList.add('slideoutInpt')
     }
 
     help.addEventListener("click", showPopup);
