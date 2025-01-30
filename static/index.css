@@ -39,6 +39,9 @@
     text-align: center;
     line-height: 2;
     font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header {
@@ -46,6 +49,7 @@
     font-family: Monocraft;
     color: white;
     text-align: center;
+    transition: 0.5s;
 }
 
 .context {
@@ -53,10 +57,18 @@
      text-align: center;
      color: rgba(225, 225, 225, 0.6);
 }
+.translate-header {
+    transition: 0.5s;
+}
+
+.translate-header:hover {
+    transform: translateY(6%);
+}
 
 .container {
     display: flex;
     flex-wrap: wrap;
+    height: 100%;
 
 }
 
@@ -119,8 +131,8 @@
 }
 
 .headerblock {
-    width: 65%;
-    height: 20%;
+    width: clamp(60rem, 65% , 80rem);
+    height: clamp(10rem, 20%, 10rem);
     padding: 1rem;
     margin-left: 0rem;
     border-color: #000000;
@@ -128,11 +140,15 @@
     border: none;
     box-shadow: 1em 1em 0em 0px rgba(186, 65, 166, 0.7);
     transition: 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .headerblock:hover {
     box-shadow: 1.5em 1.5em 0em 0px rgba(186, 65, 166, 0.7);
-    padding: 1.5rem;
+
 }
 
 .info1 {
@@ -141,6 +157,11 @@
     padding: 0.85rem;
     margin-top: 3.5rem;
     transition: 1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
 }
 
 .info1:hover {
