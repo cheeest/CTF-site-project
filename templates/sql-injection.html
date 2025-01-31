@@ -8,7 +8,7 @@
             <pre><code class="python">login = request.form['login']
 password = request.form['pass']
 cursor = get_db().cursor()
-cursor.execute(f'SELECT * FROM Users WHERE login == "{login}" AND password == "{password}"')</code></pre></p><br />
+cursor.execute(f'SELECT * FROM Users WHERE login == "{login}" AND password == "{password}"')</code></pre>
             <p class="simpletext">Примерно так выглядит сообтвествующий код, который позволяет использовать уязвимость</p>
         </div>
 
