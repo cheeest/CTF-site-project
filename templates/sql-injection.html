@@ -2,7 +2,7 @@
 
 {% block content%}
     <div class="container">
-        <div id="popup" class="sql-guide divv">
+        <div id="popup" onclick="hidePopup()" class="sql-guide divv">
             <p class="simpletext">Это так называемая SQL-инъекция - уязвимость в системах, где отправляются SQL запросы, например регистрационные формы. <br />
             <p class="simpletext">Как именно это работает? Все дело в том, что запрос отправляется без проверки на то, что пользователь туда ввёл. С использованием синтаксиса запроса можно указать себе логин 'admin', а часть с проверкой пароля просто-напросто закомментировать.</p>
             <pre><code class="python">login = request.form['login']

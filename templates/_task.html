@@ -11,7 +11,7 @@
     {% block content -%}{% endblock -%}
 
 {% include '_sidenav.html' %}
-    <img id="help" src="{{ url_for('static', filename='imgs/icon.png') }}">
+    <img id="help" onclick="showPopup()" src="{{ url_for('static', filename='imgs/icon.png') }}">
 </body>
 
 </html>
