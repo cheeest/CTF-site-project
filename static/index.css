@@ -61,6 +61,19 @@
      color: rgba(225, 225, 225, 0.6);
 }
 
+.usable-context {
+     font-family: Monocraft;
+     text-align: center;
+     color: rgba(225, 225, 225, 0.6);
+     text-align: right;
+     cursor: pointer;
+     transition: 0.3s;
+}
+
+.usable-context:hover {
+    text-decoration: underline;
+}
+
 .translate-header {
     width: 100%;
     height: 100%;
@@ -112,6 +125,7 @@
 .sql-guide {
     width: 65%;
     height: auto;
+    max-height: 37rem;
     background-color: rgb(0 0 0/ 90%);
     padding: 0.4rem 1rem;
     margin-left: 3.5rem;
@@ -120,8 +134,19 @@
     transform: translateX(-165%);
     transition: 0.5s;
     position: absolute;
+
 }
 
+/*.scroll {
+
+    max-height: 34rem;
+    width: 100%;
+    overflow-y: scroll;
+    scrollbar-color: green;
+    scrollbar-gutter: stable both-edges;
+
+}
+*/
 .sql-guide:hover {
     box-shadow: 1.2em 1.2em 0em 0px rgba(186, 65, 166, 0.9);
 }
