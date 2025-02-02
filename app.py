@@ -1,6 +1,7 @@
 import werkzeug
 from flask import Flask, render_template, request, url_for, session, redirect, g, abort
 import sqlite3
+from random import getrandbits
 
 connection = sqlite3.connect('database.db')
 cursor = connection.cursor()
@@ -46,7 +47,7 @@ def sql():
         user = cursor.fetchone()
         if not user:
             return render_template('sql-injection.html', error='Ошибка: неверный логин или пароль')
-        session['success_login'] = True
+        session['sql_flag'] = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
         return redirect(url_for('success_login'), code=302)
     return render_template('sql-injection.html')
 
@@ -58,10 +59,15 @@ def found():
 def decode():
     return render_template('decode.html')
 
-@app.route("/success_login")
+@app.route("/success_login", methods=('GET', 'POST'))
 def success_login():
-    if session.get('success_login'):
-        return render_template('success.html')
+    if request.method == 'POST':
+        user_flag = request.form['user_flag']
+        if user_flag == session.get('sql_flag'):
+            return render_template('success.html', success_flag='.')
+        return render_template('success.html', error='Ошибка: неверный флаг!')
+    if flag := session.get('sql_flag'):
+        return render_template('success.html', flag=flag)
     abort(404)
 
 @app.errorhandler(werkzeug.exceptions.NotFound)
