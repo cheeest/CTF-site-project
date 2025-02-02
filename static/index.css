@@ -10,6 +10,11 @@
 
 #popup {
     display: none;
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 .inpt {
