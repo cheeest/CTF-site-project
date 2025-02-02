@@ -14,7 +14,8 @@ cursor.execute(f'SELECT * FROM Users WHERE login == "{login}" AND password == "{
                 Вводим в соответствующее поле предполагаемый логин админа - <span class="mono">admin</span>, а часть кода с проверкой пароля, которая идёт после проверки логина, просто закомментируем знаками <span class="mono">";--</span>.
                 Если мы введём <span class="mono">admin";--</span> в поле логин, то наш запрос на сервер отправится вот так:</p>
             <pre><code class="codefont python">cursor.execute(f'SELECT * FROM Users WHERE login == "admin";--" AND password == "{password}"')</code></pre>
-            <p class="simpletext">Вы успешно вошли под логином <span class="mono">admin</span>. <span class="usable-context" onclick="hidePopup()">скрыть</span></p>
+            <p class="simpletext">Вы успешно вошли под логином <span class="mono">admin</span>.</p>
+            <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
         </div>
         <div class="divv" id="sqlInpt">
             <form action="sql-injection" method="post" class="simpletext">
