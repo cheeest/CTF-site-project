@@ -17,6 +17,15 @@
     display: none;
 }
 
+.profile {
+    width: fit-content;
+    max-width: 40rem;
+    margin: 3.5rem 0rem;
+    padding: 0.7rem 2rem;
+    background-color: rgba(0,0,0, 0.85);
+    text-align: left;
+}
+
 .inpt {
     width: 15vw;
     height: 1vw;
@@ -379,12 +388,6 @@
     transform: translate(0, -0.2em);
     box-shadow: 0.7em 0.7em 0em 0px rgba(0, 0, 0, 0.65);
 }
-
-
-.hidden {
-    color: rgba(0,0,0,0);
-}
-
 
 #success {
     bottom: 7%;

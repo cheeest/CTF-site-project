@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, url_for, flash, redirect, g
+import werkzeug
+from flask import Flask, render_template, request, url_for, session, redirect, g, abort
 import sqlite3
 
 connection = sqlite3.connect('database.db')
@@ -45,7 +46,8 @@ def sql():
         user = cursor.fetchone()
         if not user:
             return render_template('sql-injection.html', error='Ошибка: неверный логин или пароль')
-        return render_template('sql-injection.html', success="Вход произведён успешно!")
+        session['success_login'] = True
+        return redirect(url_for('success_login'), code=302)
     return render_template('sql-injection.html')
 
 @app.route("/found-me")
@@ -56,10 +58,15 @@ def found():
 def decode():
     return render_template('decode.html')
 
-@app.route("/auth-data")
-def authdata():
-    pass
+@app.route("/success_login")
+def success_login():
+    if session.get('success_login'):
+        return render_template('success.html')
+    abort(404)
 
+@app.errorhandler(werkzeug.exceptions.NotFound)
+def handle_bad_request(e):
+    return '<img src="https://http.cat/404.jpg">', 404
 
 app.run(host="0.0.0.0", debug=False)
 connection.close()
