@@ -61,12 +61,13 @@ def decode():
 
 @app.route("/success_login", methods=('GET', 'POST'))
 def success_login():
+    flag = session.get('sql_flag')
     if request.method == 'POST':
         user_flag = request.form['user_flag']
-        if user_flag == session.get('sql_flag'):
-            return render_template('success.html', success_flag='.')
-        return render_template('success.html', error='Ошибка: неверный флаг!')
-    if flag := session.get('sql_flag'):
+        if user_flag == flag:
+            return render_template('success.html', flag=flag, success_flag='.')
+        return render_template('success.html', flag=flag, error='Ошибка: неверный флаг!')
+    if flag:
         return render_template('success.html', flag=flag)
     abort(404)
 
