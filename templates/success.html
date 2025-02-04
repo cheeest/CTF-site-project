@@ -24,7 +24,9 @@
         <div id="error"> <p>{{ error }}</p> </div>
     {% elif success_flag %}
         <div class="task-done">
-            <p class="simpletext" style="position-area: center">В прошли задание! выбор следующих и кошки</p>
+            <h1 class="header">Вы прошли задание!</h1>
+            <img class="done" src="{{ url_for('static', filename='imgs/done_icon.png') }}">
+            <a href="{{ url_for('index') }}" class="usable-context" style="text-align: canter"> < НА ГЛАВНУЮ > </a>
         </div>
     {% else %}
         <div id="success"> <p>Вход произведён успешно!</p> </div>
