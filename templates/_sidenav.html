@@ -3,9 +3,9 @@
     <nav class="navlink">
         <a href="{{ url_for('index') }}" class="link">на главную</a>
 {%- for link, text in (
-    ('sql', 'sql пипка'),
-    ('found', 'forensic'),
-    ('decode', 'encode and decode'),
+    ('sql', 'Sql-инъекция'),
+    ('found', 'Форензика'),
+    ('decode', 'Криптография'),
 ) %}
     {%- if request.path != url_for(link) %}
         <a href="{{ url_for(link) }}" class="link">{{ text }}</a>
