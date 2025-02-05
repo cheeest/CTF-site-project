@@ -176,7 +176,7 @@
 }
 .slideinInpt {
     transition: 1s;
-    transform: translateX(285%);
+    transform: translateX(calc(65vw + .8em + 3.5rem));
 }
 
 .slideoutInpt {
