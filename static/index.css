@@ -38,7 +38,7 @@
     display: none;
 }
 
-.divv {
+.capsule-window {
     background-color: rgb(0 0 0 / 85%);
     border: dashed rgba(225, 225, 225, 0.75);
     border-width: 2px 3px;
@@ -169,6 +169,11 @@
     margin: 0;
 }
 
+.navgoodlinks > p + p {
+    margin: 0;
+    text-align: left;
+}
+
 .navbtn + .navgoodlinks {
     padding-top: 2rem;
 }
@@ -276,6 +281,9 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-color: rgb(0 0 0 / 85%);
+    box-sizing: border-box;
+    margin-top: 2rem;
 }
 
 .headerblock:hover {

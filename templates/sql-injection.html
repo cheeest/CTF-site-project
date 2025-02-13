@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="container">
-        <div id="popup" class="sql-guide divv">
+        <div id="popup" class="sql-guide capsule-window">
             <p class="simpletext"style="text-align: left"><span class="hltext">SQL-инъекция</span> - уязвимость системы, позволяющая пользователю ввести вредоносный код в SQL-запрос.<br />
             <p class="simpletext" style="text-align: left">Как именно это работает? Все дело в том, что данные, которые ввёл пользователь, вставляются в запрос напрямую <span class="context" style="font-size: 0.9rem">(пример кода с сервера ниже)</span></p>
             <pre><code class="codefont python">#Как же это работает на сервере?(не стоит так делать, иначе ваш код будет иметь ту же уязвимость)
@@ -17,7 +17,7 @@ cursor.execute(f'SELECT * FROM Users WHERE login == "{login}" AND password == "{
             <p class="simpletext">Вы успешно вошли под логином <span class="mono">admin</span>.</p>
             <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
         </div>
-        <div class="divv" id="sqlInpt">
+        <div class="capsule-window" id="sqlInpt">
             <form action="sql-injection" method="post" class="simpletext">
                 <p class="simpletext">Попробуй войти от имени админа,<br />
                     используя уязвимость. Найдите флаг<abbr class="hltext" title="Смотри подсказку(кнопка снизу слева)">SQL-инъекции</abbr></p>

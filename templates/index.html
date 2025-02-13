@@ -1,40 +1,59 @@
 <!DOCTYPE html>
 <html lang="ru">
-    {% include '_head.html' %}
+{% include '_head.html' %}
 <body>
     {% include '_header.html' %}
 
     <div class="container">
-        <div class="small info1 divv" >
-
+        <div class="small info1 capsule-window">
             <p class="simpletext">Разделы заданий:</p>
             <nav class="navbtn">
-                <a href="{{ url_for('sql') }}" class="btn1">Sql-инъекция</a>
-                <a href="{{ url_for('found') }}" class="btn1">Форензика</a>
-                <a href="{{ url_for('decode') }}" class="btn1">Криптография</a>
-                <a href="{{ url_for('found') }}" class="btn1">ещё таск</a>
-                <a href="{{ url_for('decode') }}" class="btn1">и еще один таск</a>
-
-                <!--    <a href="">rfi</a>-->
-                <!--    <a href="">lfi</a>-->
+            {%- for name, descr in (
+                ('sql',    "Sql-инъекция"),
+                ('found',  "Форензика"),
+                ('decode', "Криптография"),
+                ('index',  "ещё таск"),
+                ('index',  "и еще один таск")
+            ) %}
+                <a href="{{ url_for(name) }}" class="btn1">{{ descr }}</a>
+            {%- endfor %}
             </nav>
-            <nav class="navgoodlinks">
-                <p class="simpletext">Полезные ссылки:</p>
-                <p class="simpletext" style="margin: 0; text-align: left">Универсальный и крутой справочник -  <a class="simpletext btn2" href="https://book.hacktricks.wiki/en/index.html">HackTricks</a></p>
-                <p class="simpletext" style="margin: 0; text-align: left">Сайт с тасками на уровни выше -  <a class="simpletext btn2" href="https://codeby.games/">Codeby.games</a></p>
-                <p class="simpletext" style="margin: 0; text-align: left" >Сайт, где много крутого про Web -  <a class="simpletext btn2" href="https://portswigger.net/web-security">PortSwigger</a></p>
+            <nav class="navgoodlinks simpletext">
+                <p>Полезные ссылки:</p>
+                <p>
+                    Универсальный и крутой справочник -
+                    <a target="_blank" rel="noopener noreferrer" class="btn2" href="https://book.hacktricks.wiki/en/index.html">HackTricks</a>
+                </p>
+                <p>
+                    Сайт с тасками на уровни выше -
+                    <a target="_blank" rel="noopener noreferrer" class="btn2" href="https://codeby.games/">Codeby.games</a>
+                </p>
+                <p>
+                    Сайт, где много крутого про Web -
+                    <a target="_blank" rel="noopener noreferrer" class="btn2" href="https://portswigger.net/web-security">PortSwigger</a>
+                </p>
             </nav>
         </div>
 
-        <div class="info1 divv">
-            <p class="simpletext">Это ресурс для обучения, где можно попробовать свои силы в самых лёгких CTF задачках. Тут предоставлены несколько заданий, при помощи которых можно понять основы (чего основы?). При нажатии на ! в левом нижнем углу будут появляться посвнения по каждому заданию.</p>
-            <p class="simpletext">Для большенства заданий предпочтительно иметь Linux, а большинство используемых утилит базово есть в <a href="https://www.kali.org/get-kali/#kali-platforms" class="usable-context">Kali</a>. Если вы используете Windows, то можно рабоать с <a href="https://www.virtualbox.org/wiki/Downloads" class="usable-context">Виртуальной Машины</a></p>
+        <div class="info1 capsule-window simpletext">
+            <p>
+                Это ресурс для обучения, где можно попробовать свои силы в самых
+                лёгких CTF задачках. Тут предоставлены несколько заданий, при
+                помощи которых можно понять основы{# (чего основы?) #}. При нажатии
+                на ! в левом нижнем углу будут появляться посвнения по каждому
+                заданию
+            </p>
+            <p>
+                Для большенства заданий предпочтительно иметь Linux, а
+                большинство используемых утилит базово есть в
+                <a target="_blank" rel="noopener noreferrer" href="https://www.kali.org/get-kali/#kali-platforms" class="usable-context">Kali</a>.
+                Если вы используете Windows, то можно рабоать с
+                <a target="_blank" rel="noopener noreferrer" href="https://www.virtualbox.org/wiki/Downloads" class="usable-context">Виртуальной Машины</a>
+            </p>
             <p class="simpletext"> Good luck, have fun :) </p>
         </div>
     </div>
 
     <img id="help" src="{{ url_for('static', filename='imgs/icon.png') }}">
-
-<!-- <img src="{{ url_for('static', filename='imgs/Madoka-Kaname.webp') }}"> -->
 </body>
 </html>
