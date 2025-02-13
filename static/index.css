@@ -79,7 +79,7 @@
     right: 20px;
     width: max-content;
     backdrop-filter: blur(10px);
-    margin-left: auto;
+    margin-left: auto !important;
     padding: .5rem;
     border-radius: 4px;
 }
@@ -115,8 +115,9 @@
     font-family: Monocraft;
     color: white;
     text-align: center;
-    line-height: 2;
+    line-height: 1.7;
     font-size: 1.1rem;
+    padding: 0.2rem;
 }
 
 .header {
@@ -139,8 +140,6 @@
      color: rgba(225, 225, 225, 0.6);
      cursor: pointer;
      transition: 0.3s;
-     margin: 1rem;
-     padding: 1rem;
 }
 
 .usable-context:hover {
@@ -163,6 +162,16 @@
     height: 100%;
 }
 
+.navgoodlinks {
+    display:flex;
+    justify-content: start;
+    flex-direction: column;
+    margin: 0;
+}
+
+.navbtn + .navgoodlinks {
+    padding-top: 2rem;
+}
 
 #sqlInpt {
     position: relative;
