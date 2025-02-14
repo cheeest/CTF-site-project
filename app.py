@@ -1,7 +1,8 @@
 import werkzeug
-from flask import Flask, render_template, request, url_for, session, redirect, g, abort
+from flask import Flask, render_template, request, url_for, session, redirect, g, abort, send_file
 import sqlite3
 from random import getrandbits
+from func import *
 
 connection = sqlite3.connect('database.db')
 cursor = connection.cursor()
@@ -53,7 +54,14 @@ def sql():
 
 @app.route("/found-me")
 def found():
+    session['task1_id'] = id = hex(getrandbits(45))[2:]
+    session['task1_flag'] = flag_task1 = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
+    task1_flag(flag_task1, id)
     return render_template('found.html')
+
+@app.route("/found-me/task1")
+def forensic_task1():
+    return send_file(f'/tmp/task1/{session['task1_id']}.jpg')
 
 @app.route("/decode-me")
 def decode():
