@@ -1,5 +1,15 @@
 {% extends '_task.html' %}
 {% block content %}
-<p>cat</p>
- <img src="{{ url_for('forensic_task1') }}">
+<div class="container">
+    <div class="capsule-window info1">
+        <p class="simpletext">Перед тобой картинка. Проверь её метаданные, вдруг там что-то есть</p>
+        <img src="{{ url_for('forensic_task1') }}">
+    </div>
+    <div class="flag-input ">
+        <h3 class="header" style="text-align:left">Введите ответ:</h3>
+        <form action="success_login" method="post" class="simpletext">
+            <input class="inpt" type="text" name="user_flag" style="width: 100%; height: 1.25rem; margin: 0">
+            <input type="submit" value="Submit" class="btn1" style="margin-top: 1.25rem">
+    </div>
+</div>
 {% endblock %}
