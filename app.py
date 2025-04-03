@@ -57,6 +57,14 @@ def found():
     session['task1_id'] = id = hex(getrandbits(45))[2:]
     session['task1_flag'] = flag_task1 = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
     task1_flag(flag_task1, id)
+    if request.method == 'POST':
+        user_flag = request.form['user_flag']
+        if user_flag == flag_task1:
+            return render_template('found.html', flag=flag_task1, success_flag='.')
+        return render_template('found.html', flag=flag_task1, error='Ошибка: неверный флаг!')
+    if flag_task1:
+        return render_template('found.html', flag=flag_task1)
+    abort(404)
     return render_template('found.html')
 
 @app.route("/found-me/task1")
