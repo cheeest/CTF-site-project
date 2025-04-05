@@ -9,11 +9,9 @@
             <p class="simpletext">Разделы заданий:</p>
             <nav class="navbtn">
             {%- for name, descr in (
-                ('sql',    "Sql-инъекция"),
-                ('found',  "Форензика"),
-                ('decode', "Криптография"),
-                ('index',  "ещё таск"),
-                ('index',  "и еще один таск")
+                ('web',    "Web"),
+                ('forensic',  "Форензика"),
+                ('osint', "OSINT"),
             ) %}
                 <a href="{{ url_for(name) }}" class="btn1">{{ descr }}</a>
             {%- endfor %}
@@ -31,6 +29,10 @@
                 <p>
                     Сайт, где много крутого про Web -
                     <a target="_blank" rel="noopener noreferrer" class="btn2" href="https://portswigger.net/web-security">PortSwigger</a>
+                </p>
+                <p>
+                    CTF Новости России -
+                    <a target="_blank" rel="noopener noreferrer" class="btn2" href="https://ctfnews.ru/">CTF News</a>
                 </p>
             </nav>
         </div>

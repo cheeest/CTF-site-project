@@ -38,7 +38,19 @@ def close_connection(exception):
 def index():
     return render_template('index.html')
 
-@app.route("/sql-injection", methods=('GET', 'POST'))
+@app.route("/web")
+def web():
+    return render_template('web-main.html')
+
+@app.route("/forensic")
+def forensic():
+    return render_template('forensic-main.html')
+
+@app.route("/osint")
+def osint():
+    return render_template('osint-main.html')
+
+@app.route("web/sql-injection", methods=('GET', 'POST'))
 def sql():
     if request.method == 'POST':
         login = request.form['login']
@@ -52,20 +64,20 @@ def sql():
         return redirect(url_for('success_login'), code=302)
     return render_template('sql-injection.html')
 
-@app.route("/found-me")
-def found():
+@app.route("/task1-metadata")
+def task1():
     session['task1_id'] = id = hex(getrandbits(45))[2:]
     session['task1_flag'] = flag_task1 = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
     task1_flag(flag_task1, id)
     if request.method == 'POST':
         user_flag = request.form['user_flag']
         if user_flag == flag_task1:
-            return render_template('found.html', flag=flag_task1, success_flag='.')
-        return render_template('found.html', flag=flag_task1, error='Ошибка: неверный флаг!')
+            return render_template('task1-metadata.html', flag=flag_task1, success_flag='.')
+        return render_template('task1-metadata.html', flag=flag_task1, error='Ошибка: неверный флаг!')
     if flag_task1:
-        return render_template('found.html', flag=flag_task1)
+        return render_template('task1-metadata.html', flag=flag_task1)
     abort(404)
-    return render_template('found.html')
+    return render_template('task1-metadata.html')
 
 @app.route("/found-me/task1")
 def forensic_task1():
@@ -81,10 +93,10 @@ def success_login():
     if request.method == 'POST':
         user_flag = request.form['user_flag']
         if user_flag == flag:
-            return render_template('success.html', flag=flag, success_flag='.')
-        return render_template('success.html', flag=flag, error='Ошибка: неверный флаг!')
+            return render_template('success-sql.html', flag=flag, success_flag='.')
+        return render_template('success-sql.html', flag=flag, error='Ошибка: неверный флаг!')
     if flag:
-        return render_template('success.html', flag=flag)
+        return render_template('success-sql.html', flag=flag)
     abort(404)
 
 @app.errorhandler(werkzeug.exceptions.NotFound)
