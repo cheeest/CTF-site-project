@@ -50,7 +50,7 @@ def forensic():
 def osint():
     return render_template('osint-main.html')
 
-@app.route("web/sql-injection", methods=('GET', 'POST'))
+@app.route("/web/sql-injection", methods=('GET', 'POST'))
 def sql():
     if request.method == 'POST':
         login = request.form['login']
@@ -64,7 +64,7 @@ def sql():
         return redirect(url_for('success_login'), code=302)
     return render_template('sql-injection.html')
 
-@app.route("/task1-metadata")
+@app.route("/forensic/task1-metadata")
 def task1():
     session['task1_id'] = id = hex(getrandbits(45))[2:]
     session['task1_flag'] = flag_task1 = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
