@@ -420,7 +420,7 @@
 
 #help {
     max-width: 100%;
-    width: 3vw;
+    width: 3rem;
     height: auto;
     margin: 2rem;
     bottom: 0.2vw;
@@ -428,7 +428,7 @@
     position: absolute;
     box-shadow: 0.4em 0.4em 0em 0px rgba(0, 0, 0, 0.8);
     transition: 0.5s;
-    border-radius: 1em;
+    border-radius: 0.5rem;
     background-color: rgba(0, 0, 0, 0);
     image-rendering: pixelated;
 }
