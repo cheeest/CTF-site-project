@@ -297,10 +297,10 @@
 
 .headerblock {
     width: clamp(60rem, 65% , 140rem);
-    height: clamp(10rem, 20%, 10rem);
+    height: 10rem;
     padding: 1rem;
-    margin-left: 0rem;
-    border-color: #000000;
+    margin-left: 0;
+    border-color: black;
     border-radius: 0;
     border: none;
     box-shadow: 1em 1em 0em 0px rgba(186, 65, 166, 0.7);
@@ -311,7 +311,6 @@
     flex-direction: column;
     background-color: rgb(0 0 0 / 85%);
     box-sizing: border-box;
-    margin-top: 2rem;
 }
 
 .headerblock:hover {
@@ -519,9 +518,14 @@
 body {
     background-image: url(/static/imgs/bg.gif);
     width: 100vw;
-    height: 100vh;
+    height: calc(100dvh - 2rem);
     margin: 0;
     background-size: cover;
+    padding-top: 2rem;
+}
+
+body > .container {
+    height: calc(100% - 12rem);
 }
 
 a {
