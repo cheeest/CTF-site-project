@@ -1,9 +1,7 @@
 function showPopup() {
   const popup = document.getElementById("popup");
-  const sqlInpt = document.getElementById("sqlInpt");
 
   popup.classList.remove('slideoutHelp');
-  sqlInpt.classList.remove('slideoutInpt');
   popup.style.display = "block";
 
   setTimeout(() => {
@@ -14,10 +12,8 @@ function showPopup() {
 
 function hidePopup() {
   const popup = document.getElementById("popup");
-  const sqlInpt = document.getElementById("sqlInpt");
 
-  sqlInpt.classList.remove('slideinInpt');
-  sqlInpt.classList.add('slideoutInpt')
+
   popup.classList.remove('slideinHelp');
   popup.classList.add('slideoutHelp');
 
