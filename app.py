@@ -127,7 +127,7 @@ def osintgeoguessr():
 def osintrht():
     return render_template('osint-hardtask.html')
 
-@app.route("/success_login-sqltask", methods=('GET', 'POST'))
+@app.route("/web/success_login-sqltask", methods=('GET', 'POST'))
 def success_login():
     flag = session.get('sql_flag')
     if request.method == 'POST':
