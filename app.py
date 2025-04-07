@@ -51,7 +51,7 @@ def osint():
     return render_template('osint-main.html')
 
 @app.route("/web/sql-injection", methods=('GET', 'POST'))
-def sql():
+def websql():
     if request.method == 'POST':
         login = request.form['login']
         password = request.form['pass']
@@ -64,8 +64,24 @@ def sql():
         return redirect(url_for('success_login'), code=302)
     return render_template('sql-injection.html')
 
+@app.route("/web/idor")
+def webidor():
+    return render_template('idor.html')
+
+@app.route("/web/path-traversal")
+def webpt():
+    return render_template('path-traversal.html')
+
+@app.route("/web/ssti")
+def webssti():
+    return render_template('ssti.html')
+
+@app.route("/web/portswigger-guide")
+def webpsguide():
+    return render_template('portswigger-guide.html')
+
 @app.route("/forensic/task1-metadata")
-def task1():
+def forensictask1():
     session['task1_id'] = id = hex(getrandbits(45))[2:]
     session['task1_flag'] = flag_task1 = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
     task1_flag(flag_task1, id)
@@ -82,10 +98,6 @@ def task1():
 @app.route("/found-me/task1")
 def forensic_task1():
     return send_file(f'/tmp/task1/{session['task1_id']}.jpg')
-
-@app.route("/decode-me")
-def decode():
-    return render_template('decode.html')
 
 @app.route("/success_login", methods=('GET', 'POST'))
 def success_login():
