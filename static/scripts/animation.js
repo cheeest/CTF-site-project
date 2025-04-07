@@ -13,12 +13,10 @@ function showPopup() {
 function hidePopup() {
   const popup = document.getElementById("popup");
 
-
   popup.classList.remove('slideinHelp');
   popup.classList.add('slideoutHelp');
 
   setTimeout(() => {
     popup.style.display = "none"
-    popup.style.position = "absolute"
   }, 1000);
 }

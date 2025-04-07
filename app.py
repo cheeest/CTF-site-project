@@ -95,7 +95,7 @@ def fmetadata():
     abort(404)
     return render_template('task1-metadata.html')
 
-@app.route("/found-me/task1") #TODO
+@app.route("/forensic/getimg")
 def forensic_task1():
     return send_file(f'/tmp/task1/{session['task1_id']}.jpg')
 
