@@ -80,8 +80,8 @@ def webssti():
 def webpsguide():
     return render_template('portswigger-guide.html')
 
-@app.route("/forensic/task1-metadata")
-def forensictask1():
+@app.route("/forensic/metadata")
+def fmetadata():
     session['task1_id'] = id = hex(getrandbits(45))[2:]
     session['task1_flag'] = flag_task1 = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
     task1_flag(flag_task1, id)
@@ -95,11 +95,39 @@ def forensictask1():
     abort(404)
     return render_template('task1-metadata.html')
 
-@app.route("/found-me/task1")
+@app.route("/found-me/task1") #TODO
 def forensic_task1():
     return send_file(f'/tmp/task1/{session['task1_id']}.jpg')
 
-@app.route("/success_login", methods=('GET', 'POST'))
+@app.route("/forensic/base-guide")
+def fbase():
+    return render_template('base.html')
+
+@app.route("/forensic/.docx_files")
+def fbinwalk():
+    return render_template('binwalk.html')
+
+@app.route("/forensic/hex")
+def fhex():
+    return render_template('hex.html')
+
+@app.route("/forensic/hash")
+def fhash():
+    return render_template('hash.html')
+
+@app.route("/osint/questions")
+def osintquestions():
+    return render_template('osint-questions.html')
+
+@app.route("/osint/geoguessr")
+def osintgeoguessr():
+    return render_template('osint-geoguessr.html')
+
+@app.route("/osint/really_hard_task")
+def osintrht():
+    return render_template('osint-hardtask.html')
+
+@app.route("/success_login-sqltask", methods=('GET', 'POST'))
 def success_login():
     flag = session.get('sql_flag')
     if request.method == 'POST':
