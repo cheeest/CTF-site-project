@@ -1,0 +1,19 @@
+<div class="navigation capsule-window">
+    <div class="decore1"></div>
+    <nav class="navlink">
+        <a href="{{ url_for('index') }}" class="link">На главную</a>
+{%- for link, text in (
+    ('websql',    "SQL-инъекция"),
+    ('webidor',  "Уязвимость IDOR"),
+    ('webpt', "Уязвимость Path Traversal"),
+    ('webssti',  "Уязвимость SSTI"),
+    ('webpsguide',  "Немного о PortSwigger"),
+) %}
+    {%- if request.path != url_for(link) %}
+        <a href="{{ url_for(link) }}" class="link">{{ text }}</a>
+    {%- endif %}
+{%- endfor %}
+{#-        <!--    <a href="">rfi</a>--> #}
+{#-        <!--    <a href="">lfi</a>--> #}
+    </nav>
+</div>

@@ -2,7 +2,7 @@
     {% include '_head.html' %}
     <body>
         {% include '_header.html' %}
-        {% include '_sidenav.html' %}
+        {% include '_mainsidenav.html' %}
             <div class="container">
                 <div class="small info1 capsule-window">
                 <p class="simpletext">< Задания категории OSINT ></p>
@@ -10,7 +10,7 @@
                 {%- for name, descr in (
                     ('osintquestions',    "Чур ответы не гуглить!"),
                     ('osintgeoguessr',  "Профессионал Яндекс-карт"),
-                    ('osintrht', "UmVhbGx5IGhhcmQgdGFzaw=="),
+                    ('osintrht', "Реально сложный таск"),
                 ) %}
                     <a href="{{ url_for(name) }}" class="btn1">{{ descr }}</a>
                 {%- endfor %}

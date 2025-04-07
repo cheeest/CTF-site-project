@@ -2,7 +2,7 @@
     {% include '_head.html' %}
     <body>
         {% include '_header.html' %}
-        {% include '_sidenav.html' %}
+        {% include '_mainsidenav.html' %}
             <div class="container">
                 <div class="small info1 capsule-window">
                 <p class="simpletext">< Задания категории Web ></p>
@@ -12,7 +12,7 @@
                     ('webidor',  "Уязвимость IDOR"),
                     ('webpt', "Уязвимость Path Traversal"),
                     ('webssti',  "Уязвимость SSTI"),
-                    ('webpsguide',  "PortSwigger и с чем его едят"),
+                    ('webpsguide',  "Немного о PortSwigger"),
                 ) %}
                     <a href="{{ url_for(name) }}" class="btn1">{{ descr }}</a>
                 {%- endfor %}

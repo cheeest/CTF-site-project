@@ -1,0 +1,19 @@
+<div class="navigation capsule-window">
+    <div class="decore1"></div>
+    <nav class="navlink">
+        <a href="{{ url_for('index') }}" class="link">На главную</a>
+{%- for link, text in (
+    ('fmetadata',    "Метаданные и как их найти"),
+    ('fbinwalk',  "Что не так с моим докладом?"),
+    ('fbase', "0K3RgtC+INCx0LDQt9Cw"),
+    ('fhex',  "Hex в картинках"),
+    ('fhash',  "Зачем Cat нужен hash"),
+) %}
+    {%- if request.path != url_for(link) %}
+        <a href="{{ url_for(link) }}" class="link">{{ text }}</a>
+    {%- endif %}
+{%- endfor %}
+{#-        <!--    <a href="">rfi</a>--> #}
+{#-        <!--    <a href="">lfi</a>--> #}
+    </nav>
+</div>

@@ -1,5 +1,5 @@
 {% extends '_task.html' %}
-
+{% include '_websidenav.html' %}
 {% block content %}
     <div class="container">
         <div id="popup" class="sql-guide capsule-window">
@@ -35,4 +35,3 @@ cursor.execute(f'SELECT * FROM Users WHERE login == "{login}" AND password == "{
     {% endif %}
 
 {% endblock %}
-D
