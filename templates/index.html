@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
-{% include '_head.html' %}
+{% include 'utils/_head.html' %}
 <body>
-    {% include '_header.html' %}
+    {% include 'utils/_header.html' %}
 
     <div class="container">
         <div class="small info1 capsule-window">
@@ -36,7 +36,21 @@
                 </p>
             </nav>
         </div>
-
+        <div id="popup" class="sql-guide capsule-window">
+            <p class="simpletext"style="text-align: left"><a class="hltext" href="https://book.hacktricks.wiki/en/pentesting-web/sql-injection/index.html?highlight=sql%20inje#what-is-sql-injection">SQL-инъекция</a> - уязвимость системы, позволяющая пользователю ввести вредоносный код в SQL-запрос.<br />
+            <p class="simpletext" style="text-align: left">Как именно это работает? Все дело в том, что данные, которые ввёл пользователь, вставляются в запрос напрямую <span class="context" style="font-size: 0.9rem">(пример кода с сервера ниже)</span></p>
+            <pre><code class="codefont python">#Как же это работает на сервере?(не стоит так делать, иначе ваш код будет иметь ту же уязвимость)
+login = request.form['login']  # Получаем данные из окна с логином, которые пользователь ввёл в форму
+password = request.form['pass']  # Так же получаем данные из окна с паролем
+cursor = get_db().cursor()  # Получение доступа к базе данных
+cursor.execute(f'SELECT * FROM Users WHERE login == "{login}" AND password == "{password}"')  # Вставляем в запрос данные от пользователя</code></pre>
+            <p class="simpletext" style="text-align: left">Так в место того, чтобы вводить свои данные, можно ввести определённые команды <span class="context" style="font-size: 0.9rem">(как правило - вредоносные)</span>
+                Вводим в соответствующее поле предполагаемый логин админа - <span class="mono">admin</span>, а часть кода с проверкой пароля, которая идёт после проверки логина, просто закомментируем знаками <span class="mono">";--</span> или <span class="mono">"#</span>.
+                Если мы введём <span class="mono">admin";--</span> в поле логин, то наш запрос на сервер отправится вот так:</p>
+            <pre><code class="codefont python">cursor.execute(f'SELECT * FROM Users WHERE login == "admin";--" AND password == "{password}"')</code></pre>
+            <p class="simpletext">Соответственно вся часть после знака комментария просто не учитывается. Вы успешно вошли под логином <span class="mono">admin</span>.</p>
+            <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
+        </div>
         <div class="info1 capsule-window simpletext">
             <p>
                 Это ресурс для обучения, где можно попробовать свои силы в самых
@@ -56,6 +70,6 @@
         </div>
     </div>
 
-    <img id="help" src="{{ url_for('static', filename='imgs/icon.png') }}">
+    <img id="help" title="" onclick="showPopup()" src="{{ url_for('static', filename='imgs/icon.png') }}">
 </body>
 </html>

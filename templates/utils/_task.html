@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+{% block head %}
+    {%- include 'utils/_head.html' %}
+{%- endblock %}
+
+<body>
+{% include 'utils/_header.html' -%}
+
+    {% block content -%}{% endblock -%}
+
+
+    <img id="help" title="" onclick="showPopup()" src="{{ url_for('static', filename='imgs/icon.png') }}">
+</body>
+
+</html>
