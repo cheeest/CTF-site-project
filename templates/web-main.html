@@ -6,17 +6,19 @@
             <div class="container">
                 <div class="small info1 capsule-window">
                 <p class="simpletext">< Задания категории Web ></p>
-                <nav class="navbtn">
-                {%- for name, descr in (
-                    ('websql',    "SQL-инъекция"),
-                    ('webidor',  "Уязвимость IDOR"),
-                    ('webpt', "Уязвимость Path Traversal"),
-                    ('webssti',  "Уязвимость SSTI"),
-                    ('webpsguide',  "Немного о PortSwigger"),
-                ) %}
-                    <a href="{{ url_for(name) }}" class="btn1">{{ descr }}</a>
-                {%- endfor %}
+                    <nav class="navbtn">
+                    {%- for name, descr in (
+                        ('websql',    "SQL-инъекция"),
+                        ('webidor',  "Уязвимость IDOR"),
+                        ('webpt', "Уязвимость Path Traversal"),
+                        ('webssti',  "Уязвимость SSTI"),
+                        ('webpsguide',  "Немного о PortSwigger"),
+                    ) %}
+                        <a href="{{ url_for(name) }}" class="btn1">{{ descr }}</a>
+                    {%- endfor %}
+                    </nav>
+                </div>
             </div>
-        <img id="help" src="{{ url_for('static', filename='imgs/icon.png') }}">
+       <img id="help" title="Да, именно тут будет подсказка" onclick="showPopup()" src="{{ url_for('static', filename='imgs/icon.png') }}">
     </body>
 </html>

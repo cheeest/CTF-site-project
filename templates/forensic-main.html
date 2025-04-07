@@ -6,17 +6,19 @@
             <div class="container">
                 <div class="small info1 capsule-window">
                 <p class="simpletext">< Задания категории Форензика ></p>
-                <nav class="navbtn">
-                {%- for name, descr in (
-                    ('fmetadata',    "Метаданные и как их найти"),
-                    ('fbinwalk',  "Что не так с моим докладом?"),
-                    ('fbase', "0K3RgtC+INCx0LDQt9Cw"),
-                    ('fhex',  "Hex в картинках"),
-                    ('fhash',  "Зачем Cat нужен hash"),
-                ) %}
-                    <a href="{{ url_for(name) }}" class="btn1">{{ descr }}</a>
-                {%- endfor %}
+                    <nav class="navbtn">
+                    {%- for name, descr in (
+                        ('fmetadata',    "Метаданные и как их найти"),
+                        ('fbinwalk',  "Что не так с моим докладом?"),
+                        ('fbase', "0K3RgtC+INCx0LDQt9Cw"),
+                        ('fhex',  "Hex в картинках"),
+                        ('fhash',  "Зачем Cat нужен hash"),
+                    ) %}
+                        <a href="{{ url_for(name) }}" class="btn1">{{ descr }}</a>
+                    {%- endfor %}
+                    </nav>
+                </div>
             </div>
-        <img id="help" src="{{ url_for('static', filename='imgs/icon.png') }}">
+       <img id="help" title="Да, именно тут будет подсказка" onclick="showPopup()" src="{{ url_for('static', filename='imgs/icon.png') }}">
     </body>
 </html>
