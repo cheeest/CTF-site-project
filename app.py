@@ -109,8 +109,8 @@ def fbinwalk():
     if request.method == 'POST':
         user_flag = request.form['user_flag']
         if user_flag == flag_task2:
-            return render_template('task1-metadata.html', flag=flag_task2, success_flag='.')
-        return render_template('task1-metadata.html', flag=flag_task2, error='Ошибка: неверный флаг!')
+            return render_template('binwalk.html', flag=flag_task2, success_flag='.')
+        return render_template('binwalk.html', flag=flag_task2, error='Ошибка: неверный флаг!')
     return render_template('binwalk.html')
 
 @app.route("/forensic/hex")
