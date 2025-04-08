@@ -3,6 +3,13 @@
 {% block content %}
 
 <div id="popup" class="sql-guide capsule-window">
+    <p class="simpletext" style="text-align: left"><a href="https://encyclopedia.kaspersky.ru/glossary/docx/" class="hltext">.docx</a> файлы это примерно одно и то же, что простой .zip архив. Внутри него отдельными файлами хранятся шрифты, содержание, разметка и приложения, в общем - всё, что использовалось в документе.</p>
+    <p class="simpletext" style="text-align: left">Таким образом, если файл не открывается, то можно попробовать вытащить его содержимое, используя предустановленную в Kali утилиту <a href="https://kali.tools/?p=6771" class="hltext">Binwalk</a>. (Ну или посмотреть на повреждённые сигнатуры.. Но об этом в таске про <a href="{{ url_for('fhex') }}" class="hltext">Hex</a>)</p>
+    <p class="simpletext" style="text-align: left">Как использовать утилиту binwalk? Для начала стоит просто просмотреть файл на наличие в нём чего-либо:<span class="context" style="font-size: 0.9rem">(пример команды ниже)</span></p>
+    <pre><code class="codefont bash">binwalk [файл]</code></pre>
+    <p class="simpletext" style="text-align: left">Если в выданных данных вы замечаете что-то, что не пустое, то можно попробовать извлечь всё содежимое, добавив соответсвующий флаг в команду:</p>
+    <pre><code class="codefont bash">binwalk -e [файл]</code></pre>
+    <p class="simpletext" style="text-align: left"> Конкретно в этом таске в извлечённых данных будут картинки, а на одной из них - флаг-ответ.</p>
     <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
 </div>
 <div class="container">
