@@ -26,7 +26,7 @@
         <div class="task-done">
             <h1 class="header">Вы прошли задание!</h1>
             <img class="done" src="{{ url_for('static', filename='imgs/done_icon.png') }}">
-            <a href="{{ url_for('index') }}" class="usable-context" style="text-align: canter; margin: 1rem; padding: 1rem;"> < НА ГЛАВНУЮ > </a>
+            <a href="{{ url_for('web') }}" class="usable-context" style="text-align: canter; margin: 1rem; padding: 1rem;"> < Вернуться к заданиям > </a>
         </div>
     {% else %}
         <div id="success"> <p>Вход произведён успешно!</p> </div>
