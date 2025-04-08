@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, url_for, session, redirect, g
 import sqlite3
 from random import getrandbits
 from func import *
+import base64
 
 connection = sqlite3.connect('database.db')
 cursor = connection.cursor()
@@ -99,9 +100,20 @@ def fmetadata():
 def forensic_task1():
     return send_file(f'/tmp/task1/{session['task1_id']}.jpg')
 
-@app.route("/forensic/base-guide")
+@app.route("/forensic/base-guide", methods=('GET', 'POST'))
 def fbase():
-    return render_template('base.html')
+    flag_task2 = session['flag_task2']
+    if request.method == 'POST':
+        user_flag = request.form['user_flag']
+        if user_flag == flag_task2:
+            return render_template('base.html', flag=flag_task2, success_flag='.')
+        return render_template('base.html', flag=flag_task2, error='Ошибка: неверный флаг!')
+    if not flag_task2:
+        session['flag_task2'] = flag_task2 = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
+    base32str = str(base64.b32encode(flag_task2.encode()))[2:-1]
+    base64str = str(base64.b64encode(f"Ой-ой, похоже, что самое главное всё ещё зашифровано(  {base32str}".encode()))[2:-1]
+    return render_template('base.html', base_task=base64str)
+
 
 @app.route("/forensic/.docx_files", methods=('GET', 'POST'))
 def fbinwalk():
