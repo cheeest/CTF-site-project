@@ -2,21 +2,39 @@
 {% include 'utils/_forensicsidenav.html' %}
 {% block content %}
 <div class="container">
-    <div class="capsule-window info1">
-        <p class="simpletext">Перед тобой картинка. Проверь её метаданные, вдруг там что-то есть</p>
+    <div class="small capsule-window info1">
+        <p class="simpletext">Перед тобой забавная картинка. Попробуй проверить её метаданные, вдруг там что-то есть</p>
         <img src="{{ url_for('forensic_task1') }}">
     </div>
-    <div class="flag-input ">
+    <div class="flag-input">
         <h3 class="header" style="text-align:left">Введите ответ:</h3>
-        <form action="success_login" method="post" class="simpletext">
+        <form action="/forensic/metadata" method="post" class="simpletext">
             <input class="inpt" type="text" name="user_flag" style="width: 100%; height: 1.25rem; margin: 0">
             <input type="submit" value="Submit" class="btn1" style="margin-top: 1.25rem">
+        </form>
     </div>
 
     <div id="popup" class="sql-guide capsule-window">
-            <p class="simpletext"style="text-align: left"><a class="hltext" href="https://book.hacktricks.wiki/en/pentesting-web/sql-injection/index.html?highlight=sql%20inje#what-is-sql-injection">SQL-инъекция</a> - уязвимость системы, позволяющая пользователю ввести вредоносный код в SQL-запрос.<br />
-
-            <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
+        <p class="simpletext" style="text-align: left"><a href="https://book.hacktricks.wiki/en/generic-methodologies-and-resources/basic-forensic-methodology/partitions-file-systems-carving/index.html?highlight=metadata#metadata" class="hltext">Метаданные (Metadata)</a> - данные несущие информацию о других данных, например о каком-либо файле<br />
+        <p class="simpletext" style="text-align: left"> Что там может быть? Примерно всё, что угодно, но обычно там пишется техническая информация о файле или методе, которым он был получен: дата последнего изменения, разрешение или размер, у фотографий можно найти модель камер и тд. Также метаданные можно перезаписывать или добавлять туда новые свойства. Для этого есть много утилит, однако в Kali базово предустановлена <a href="https://kali.tools/?p=5984" class="hltext">Exiftool</a>.<br />
+        <p class="simpletext" style="text-align: left"> Посмотреть метаданные картинки, используя exiftool, можно следующим образом:<span class="context" style="font-size: 0.9rem">(пример команды ниже)</span></p>
+        <pre><code class="codefont bash">exiftool [файл]</code></pre>
+        <p class="simpletext" style="text-align: left">В консоли появятся метаданные, где, в нашем случае, будет спрятан флаг</p>
+        <p class="simpletext" style="text-align: left">Если хочется внести что-то твоё в метаданные файла или перезаписать их, то можно использовать следующую команду:
+        <pre><code class="codefont bash">exiftool -[Название тега, который будет изменён]='что-нибудь, что хочется оставить в метаданных' [файл]</code></pre><br />
+        <span class="context" style="font-size: 0.9rem">(пример)</span></p>
+        <pre><code class="codefont bash">exiftool -Comment='Я люблю котиков' cat_img.png</code></pre>
+        <p class="simpletext" style="text-align: left">Если же возможности использовать Exiftool нет, то можно использовать on-line версии или другие утилиты</p>
+        <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
         </div>
 </div>
+    {% if error %}
+        <div id="error"> <p>{{ error }}</p> </div>
+    {% elif success_flag %}
+        <div class="task-done">
+            <h1 class="header">Вы прошли задание!</h1>
+            <img class="done" src="{{ url_for('static', filename='imgs/done_icon.png') }}">
+            <a href="{{ url_for('index') }}" class="usable-context" style="text-align: canter; margin: 1rem; padding: 1rem;"> < НА ГЛАВНУЮ > </a>
+        </div>
+    {% endif %}
 {% endblock %}

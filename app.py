@@ -80,10 +80,10 @@ def webssti():
 def webpsguide():
     return render_template('portswigger-guide.html')
 
-@app.route("/forensic/metadata")
+@app.route("/forensic/metadata", methods=('GET', 'POST'))
 def fmetadata():
     session['task1_id'] = id = hex(getrandbits(45))[2:]
-    session['task1_flag'] = flag_task1 = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
+    session['flag_task1'] = flag_task1 = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
     task1_flag(flag_task1, id)
     if request.method == 'POST':
         user_flag = request.form['user_flag']
