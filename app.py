@@ -82,18 +82,18 @@ def webpsguide():
 
 @app.route("/forensic/metadata", methods=('GET', 'POST'))
 def fmetadata():
-    session['task1_id'] = id = hex(getrandbits(45))[2:]
-    session['flag_task1'] = flag_task1 = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
-    task1_flag(flag_task1, id)
+    flag_task1 = session['flag_task1']
     if request.method == 'POST':
         user_flag = request.form['user_flag']
         if user_flag == flag_task1:
             return render_template('task1-metadata.html', flag=flag_task1, success_flag='.')
         return render_template('task1-metadata.html', flag=flag_task1, error='Ошибка: неверный флаг!')
-    if flag_task1:
-        return render_template('task1-metadata.html', flag=flag_task1)
-    abort(404)
-    return render_template('task1-metadata.html')
+
+    if not flag_task1:
+        session['task1_id'] = id = hex(getrandbits(45))[2:]
+        session['flag_task1'] = flag_task1 = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
+        task1_flag(flag_task1, id)
+    return render_template('task1-metadata.html', flag=flag_task1)
 
 @app.route("/forensic/getimg")
 def forensic_task1():

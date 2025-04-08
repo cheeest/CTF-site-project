@@ -1,0 +1,33 @@
+{% extends 'utils/_task.html' %}
+{% include 'utils/_forensicsidenav.html' %}
+{% block content %}
+
+<div id="popup" class="sql-guide capsule-window">
+    <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
+</div>
+<div class="container">
+    <div class="small capsule-window info1">
+        <p class="simpletext">Друг скинул мне картинку и ведёт себя как-то странно.. Постоянно говорит какими-то загадками( Помоги мне посмотреть, что не так с изображением. Может что-то есть <abbr class="hltext" title="Смотри подсказку(кнопка снизу слева)">внутри</abbr>?</p>
+        <h3 href="{{ url_for('static', filename='Доклад.docx') }}" class="header">Вставь сюда ссылку на генерируемое изображение, да</h3>
+    </div>
+    <div class="flag-input">
+        <h3 class="header" style="text-align:left">Введите ответ:</h3>
+        <form action="/forensic/.docx_files" method="post" class="simpletext">
+            <input class="inpt" type="text" name="user_flag" style="width: 100%; height: 1.25rem; margin: 0">
+            <input type="submit" value="Submit" class="btn1" style="margin-top: 1.25rem">
+        </form>
+    </div>
+</div>
+
+
+
+    {% if error %}
+        <div id="error"> <p>{{ error }}</p> </div>
+    {% elif success_flag %}
+        <div class="task-done">
+            <h1 class="header">Вы прошли задание!</h1>
+            <img class="done" src="{{ url_for('static', filename='imgs/done_icon.png') }}">
+            <a href="{{ url_for('forensic') }}" class="usable-context" style="text-align: canter; margin: 1rem; padding: 1rem;"> < Вернуться к заданиям > </a>
+        </div>
+    {% endif %}
+{% endblock %}
