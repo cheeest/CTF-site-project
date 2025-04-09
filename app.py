@@ -113,7 +113,7 @@ def fbase():
     if not flag_task4:
         session['flag_task4'] = flag_task4 = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
     base32str = str(base64.b32encode(flag_task4.encode()))[2:-1]
-    base64str = str(base64.b64encode(f"Ой-ой, похоже, что самое главное всё ещё зашифровано(  {base32str}".encode()))[2:-1]
+    base64str = str(base64.b64encode(f"Ой-ой, похоже, что самое главное всё ещё зашифровано.. Сможешь расшифровать, ОП?  {base32str}".encode()))[2:-1]
     return render_template('base.html', base_task=base64str)
 
 
