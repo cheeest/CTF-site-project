@@ -1,9 +1,10 @@
 import werkzeug
-from flask import Flask, render_template, request, url_for, session, redirect, g, abort, send_file
+from flask import Flask, render_template, request, url_for, session, redirect, g, abort, send_file, render_template_string
 import sqlite3
 from random import getrandbits
 from func import *
 import base64
+
 
 connection = sqlite3.connect('database.db')
 cursor = connection.cursor()
@@ -73,9 +74,35 @@ def webidor():
 def webpt():
     return render_template('path-traversal.html')
 
-@app.route("/web/ssti")
+@app.route("/web/ssti", methods=('GET', 'POST'))
 def webssti():
-    return render_template('ssti.html')
+    id = session.get('ssti_id')
+    flag = session.get('flag_ssti')
+    if id not in comments.keys():
+        session['ssti_id'] = id = hex(getrandbits(45))[2:]
+        comments[id] = []
+        session['flag_ssti'] = flag = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
+
+    if request.method == 'POST':
+        if 'user_flag' in  request.form.keys():
+            user_flag = request.form['user_flag']
+            if user_flag == flag:
+                return render_template('ssti.html', flag=flag, success_flag='.')
+            return render_template('ssti.html', flag=flag, error='Ошибка: неверный флаг!')
+
+        username = request.form['username']
+        comment = request.form['user_comment']
+        comments[id].append((username, comment))
+    def render(x):
+        try:
+            return render_template_string(x, flag=flag)
+        except:
+            return x
+    return render_template('ssti.html', render_template_string=render, comments=comments[id], flag=flag)
+
+
+comments = {}
+
 
 @app.route("/web/portswigger-guide")
 def webpsguide():

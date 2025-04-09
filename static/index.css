@@ -168,6 +168,13 @@
     align-content: flex-start;
 }
 
+.comments {
+     background-color: rgb(35, 33, 54);
+     height: 60%;
+     width: 80%;
+     text-align: left;
+}
+
 .navgoodlinks {
     display:flex;
     justify-content: start;

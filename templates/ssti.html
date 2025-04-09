@@ -1,0 +1,43 @@
+{% extends 'utils/_task.html' %}
+{% include 'utils/_forensicsidenav.html' %}
+{% block content %}
+
+<div id="popup" class="sql-guide capsule-window">
+    <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
+</div>
+<div class="container">
+    <div class="small capsule-window info1" style="height: auto">
+        <p class="simpletext">Приветствую тебя, о сетевой путник! Прошу, оставь упоминание о себе здесь!</p>
+        <form action="/web/ssti" method="post" class="simpletext">
+            <div class="small-container" ><p>Имя:<input class="inpt" type="text" name="username" style="width: 100%; height: 1.25rem; margin: 0"></p></div>
+            <div class="small-container" ><p>Комментарий:<input class="inpt" type="text" name="user_comment" style="width: 100%; height: 1.25rem; margin: 0"></p></div>
+            <input type="submit" value="Submit" class="btn1" style="margin-top: 1.25rem">
+        </form>
+        <div class="comments">
+            {% for (username, comment) in comments -%}
+            <p class="header" style="text-align: left">{{ username }}</p>
+            <p class="mono">{{ render_template_string(comment) }}</p>
+            {% endfor -%}
+        </div>
+    </div>
+    <div class="flag-input">
+        <h3 class="header" style="text-align:left">Введите ответ:</h3>
+        <form action="/web/ssti" method="post" class="simpletext">
+            <input class="inpt" type="text" name="user_flag" style="width: 100%; height: 1.25rem; margin: 0">
+            <input type="submit" value="Submit" class="btn1" style="margin-top: 1.25rem">
+        </form>
+    </div>
+</div>
+
+
+
+    {% if error %}
+        <div id="error"> <p>{{ error }}</p> </div>
+    {% elif success_flag %}
+        <div class="task-done">
+            <h1 class="header">Вы прошли задание!</h1>
+            <img class="done" src="{{ url_for('static', filename='imgs/done_icon.png') }}">
+            <a href="{{ url_for('forensic') }}" class="usable-context" style="text-align: canter; margin: 1rem; padding: 1rem;"> < Вернуться к заданиям > </a>
+        </div>
+    {% endif %}
+{% endblock %}
