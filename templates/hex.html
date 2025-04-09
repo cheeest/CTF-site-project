@@ -3,6 +3,20 @@
 {% block content %}
 
 <div id="popup" class="sql-guide capsule-window">
+    <p class="simpletext" style="text-align: left">Любой файл можно представить в виде <a href="https://course.ugractf.ru/stegano/files.html" class="hltext">Hex-данных</a>.</p>
+    <p class="simpletext" style="text-align: left">Для записи байтов в hex формате используется 16-ричный вид (по 2 цифры), т.е от 0 до F. В Hex'е файла можно наблюдать: важные сигнатуры, указывающие на тип файла и просто байты информации.</p>
+    <p class="simpletext" style="text-align: left">Эти данные можно редактировать в Hex-редакторах, например, <a href="https://course.ugractf.ru/stegano/files.html" class="hltext">xxd</a>. Открыть файл и посмотреть его Hex с помощью xxd можно так:<span class="context" style="font-size: 0.9rem">(пример команды ниже)</span></p>
+    <pre><code class="codefont bash">xxd [файл]</code></pre>
+    <p class="simpletext" style="text-align: left">Не обязательно вносить какие-либо изменения, можно просто внимательно посмотреть их представление в формате ASCII <span class="context" style="font-size: 0.9rem">(Обычно слева - данные в бинарном виде, посередине - столбик с 16-ричными данными (Hex), а справа их представление в понятном нам языке, в виде символов ASCII).</span></p>
+    <pre><code class="codefont bash">
+│00000000│ 50 4b 03 04 14 00 06 00 ┊ 08 00 00 00 21 00 32 91 │PK•••⋄•⋄┊•⋄⋄⋄!⋄2×│
+│00000010│ 6f 57 66 01 00 00 a5 05 ┊ 00 00 13 00 08 02 5b 43 │oWf•⋄⋄×•┊⋄⋄•⋄••[C│
+│00000020│ 6f 6e 74 65 6e 74 5f 54 ┊ 79 70 65 73 5d 2e 78 6d │ontent_T┊ypes].xm│
+│00000030│ 6c 20 a2 04 02 28 a0 00 ┊ 02 00 00 00 00 00 00 00 │l ×••(×⋄┊•⋄⋄⋄⋄⋄⋄⋄│</code></pre>
+    <p class="simpletext" style="text-align: left">Вышеприведённый пример - начало любого .docx файла и в самом начале у него идут 2 байта отвечающие за его структуру <a href="{{ url_for('fbinwalk') }}" class="hltext" title="Задание на эту тему">архива</a> - PK или же 50 4b. Если их повредить, т.е изменить в редакторе 50 4b -> 00 00, то файл просто перестанет открываться.</p>
+    <p class="simpletext" style="text-align: left">Однако в случае нашего задания нужно просто посмотреть на строки без пустых или бесполезных байтов. С этим может помочь утилита <a href="https://ioflood.com/blog/strings-linux-command/" class="hltext">strings</a>:<span class="context" style="font-size: 0.9rem">(пример команды ниже)</span></p>
+    <pre><code class="codefont bash">strings [файл]</code></pre>
+    <p class="simpletext" style="text-align: left">Именно она и выведет нам флаг быстрее всех.</p>
     <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
 </div>
 <div class="container">
