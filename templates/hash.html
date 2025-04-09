@@ -7,12 +7,12 @@
 </div>
 <div class="container">
     <div class="small capsule-window info1" style="height: auto">
-        <p class="simpletext">Друг скинул мне картинку и ведёт себя как-то странно.. Постоянно говорит какими-то загадками( Помоги мне посмотреть, что не так с изображением. Может что-то есть <abbr class="hltext" title="Смотри подсказку(кнопка снизу слева)">внутри</abbr>?</p>
-         <img style="heigth: auto; width: 23rem" src="{{ url_for('static', filename='imgs/hextask.jpg') }}">
+        <p class="simpletext">На своей рабочей машине я смог достать этот <abbr class="hltext" title="Смотри подсказку(кнопка снизу слева)">файл</abbr>.. Я где-то слышал, что в нём есть то, что поможет мне стать админом - пароль или что-то вроде.. но Вместо пароля там написан какой-то бред!</p>
+        <a href="{{ url_for('static', filename='shadow') }}" class="simpletext header" style="font-size: 1.6rem">Shadow</a>
     </div>
     <div class="flag-input">
         <h3 class="header" style="text-align:left">Введите ответ:</h3>
-        <form action="/forensic/hex" method="post" class="simpletext">
+        <form action="/forensic/hash" method="post" class="simpletext">
             <input class="inpt" type="text" name="user_flag" style="width: 100%; height: 1.25rem; margin: 0">
             <input type="submit" value="Submit" class="btn1" style="margin-top: 1.25rem">
         </form>

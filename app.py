@@ -83,7 +83,7 @@ def webpsguide():
 
 @app.route("/forensic/metadata", methods=('GET', 'POST'))
 def fmetadata():
-    flag_task1 = session['flag_task1']
+    flag_task1 = session.get('flag_task1')
     if request.method == 'POST':
         user_flag = request.form['user_flag']
         if user_flag == flag_task1:
@@ -98,18 +98,20 @@ def fmetadata():
 
 @app.route("/forensic/getimg")
 def forensic_task1():
+    if 'task1_id' not in session.keys():
+        abort(404)
     return send_file(f'/tmp/task1/{session['task1_id']}.jpg')
 
 @app.route("/forensic/base-guide", methods=('GET', 'POST'))
 def fbase():
-    flag_task4 = session['flag_task4']
+    flag_task4 = session.get('flag_task4')
     if request.method == 'POST':
         user_flag = request.form['user_flag']
         if user_flag == flag_task4:
             return render_template('base.html', flag=flag_task4, success_flag='.')
         return render_template('base.html', flag=flag_task4, error='Ошибка: неверный флаг!')
     if not flag_task4:
-        session['flag_task2'] = flag_task4 = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
+        session['flag_task4'] = flag_task4 = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
     base32str = str(base64.b32encode(flag_task4.encode()))[2:-1]
     base64str = str(base64.b64encode(f"Ой-ой, похоже, что самое главное всё ещё зашифровано(  {base32str}".encode()))[2:-1]
     return render_template('base.html', base_task=base64str)
@@ -134,10 +136,15 @@ def fhex():
             return render_template('hex.html', flag=flag_task2, success_flag='.')
         return render_template('hex.html', flag=flag_task2, error='Ошибка: неверный флаг!')
     return render_template('hex.html')
-    return render_template('hex.html')
 
-@app.route("/forensic/hash")
+@app.route("/forensic/hash", methods=('GET', 'POST'))
 def fhash():
+    flag_task5 = "C4TchFl4g{superadmin}"
+    if request.method == 'POST':
+        user_flag = request.form['user_flag']
+        if user_flag == flag_task5:
+            return render_template('hash.html', flag=flag_task5, success_flag='.')
+        return render_template('hash.html', flag=flag_task5, error='Ошибка: неверный флаг!')
     return render_template('hash.html')
 
 @app.route("/osint/questions")
