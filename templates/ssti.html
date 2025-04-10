@@ -3,13 +3,24 @@
 {% block content %}
 
 <div id="popup" class="sql-guide capsule-window">
+    <p class="simpletext" style="text-align: left"><a href="https://portswigger.net/web-security/server-side-template-injection" class="hltext">SSTI (Server-side template injection)</a> - уязвимость, позволяющая внедрить код в шаблон, выполнив его на стороне сервера.</p>
+    <p class="simpletext" style="text-align: left">Как это работает? Если пользователь ввёдет где-либо на сайте не просто текст, а команду, вставляемую в шаблонизатор, то сервер может выполнить её и вернуть пользователю результат, если не стоит должных защит. Примерно так это выглядит на сервере:<span class="context" style="font-size: 0.9rem">(пример кода ниже)</span></p>
+    <pre><code class="codefont python">if request.method == 'POST':
+    comment = request.form['user_comment']
+    # В HTML комментарий вставляется через вызов переменной: {% raw %} &lt;p&gt; {{ comment }} &lt;/p&gt; {% endraw %}</code></pre>
+    <p class="simpletext" style="text-align: left">Можно заметить, что {% raw %} {{ }} {% endraw %} передают переменную. Т.е пользователь может просто написать команду такого же вида в поле ввода и она будет выполнена. </p>
+    <p class="simpletext" style="text-align: left">В нашем случае можем ввести в комментарии:</p>
+    <pre><code class="codefont python">{% raw %} {{ flag }} {% endraw %}</code></pre>
+    <p class="simpletext" style="text-align: left">На доске же вместо нашего "комментария" отобразится введённая переменная, т.е флаг</p>
+    <p class="simpletext" style="text-align: left">Однако можно в {% raw %} {{ }} {% endraw %} вписать любую команду и она будет выполнена с одним "но": Современные шаблонизаторы неохотно обрабатывают в принципе всё, что в них суют и даже здесь уязвимость создана искусственно</p>
     <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
 </div>
 <div class="container">
     <div class="small capsule-window info1" style="height: auto;">
-        <p class="simpletext">Приветствую тебя, о сетевой путник! Прошу, оставь упоминание о себе здесь!</p>
+        <p class="simpletext">Приветствую тебя, о сетевой путник! <br />
+            Прошу, оставь упоминание о себе здесь! Тут допускается всё: ничего страшного если твой комментарий будет <abbr class="hltext" title="Смотри подсказку(кнопка снизу слева)">немного странным</abbr></p>
         <form action="/web/ssti" method="post" class="simpletext">
-            <div class="small-container" style="justify-content: space-between;"><p>Имя:</p> <input type="text" name="username" class="inpt" /></div>
+            <div class="small-container" style="justify-content: space-between;"><p>Никнейм:</p> <input type="text" name="username" class="inpt" /></div>
                 <div class="small-container" style="justify-content: space-between;"><p>Комментарий:</p> <input type="text" name="user_comment" class="inpt"/></div>
             <input type="submit" value="Отправить" class="btn1" style="margin-top: 1.25rem">
         </form>
