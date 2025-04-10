@@ -6,18 +6,32 @@
     <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
 </div>
 <div class="container">
-    <div class="small capsule-window info1" style="height: auto">
+    <div class="small capsule-window info1" style="height: auto;">
         <p class="simpletext">Приветствую тебя, о сетевой путник! Прошу, оставь упоминание о себе здесь!</p>
         <form action="/web/ssti" method="post" class="simpletext">
-            <div class="small-container" ><p>Имя:<input class="inpt" type="text" name="username" style="width: 100%; height: 1.25rem; margin: 0"></p></div>
-            <div class="small-container" ><p>Комментарий:<input class="inpt" type="text" name="user_comment" style="width: 100%; height: 1.25rem; margin: 0"></p></div>
-            <input type="submit" value="Submit" class="btn1" style="margin-top: 1.25rem">
+            <div class="small-container" style="justify-content: space-between;"><p>Имя:</p> <input type="text" name="username" class="inpt" /></div>
+                <div class="small-container" style="justify-content: space-between;"><p>Комментарий:</p> <input type="text" name="user_comment" class="inpt"/></div>
+            <input type="submit" value="Отправить" class="btn1" style="margin-top: 1.25rem">
         </form>
         <div class="comments">
-            {% for (username, comment) in comments -%}
-            <p class="header" style="text-align: left">{{ username }}</p>
-            <p class="mono">{{ render_template_string(comment) }}</p>
-            {% endfor -%}
+            <div class="comment">
+                {% for (username, comment) in comments -%}
+                <p class="header" style="text-align: left">{{ username }}</p>
+                <p class="mono">{{ render_template_string(comment) }}</p>
+                {% endfor -%}
+            </div>
+            <div class="comment">
+                <p class="header" style="text-align: left">Sup3r_C4t</p>
+                <p class="mono">Мяу-мяу Мяу-мяу</p>
+            </div>
+            <div class="comment">
+                <p class="header" style="text-align: left">Herobrine</p>
+                <p class="mono">▓▒░(°◡°)░▒▓</p>
+            </div>
+            <div class="comment">
+                <p class="header" style="text-align: left">0MegaCTF++</p>
+                <p class="mono">Выходи сюда, глупый Админ! Отдавай флаг!!!!(╮°-°)╮┳━━┳ ( ╯°□°)╯ ┻━━┻</p>
+            </div>
         </div>
     </div>
     <div class="flag-input">

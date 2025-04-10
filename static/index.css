@@ -170,9 +170,16 @@
 
 .comments {
      background-color: rgb(35, 33, 54);
-     height: 60%;
-     width: 80%;
+     height: 12rem;
+     width: 95%;
      text-align: left;
+     border-radius: 0.5rem;
+     overflow-y: auto;
+     padding: 0.5rem;
+}
+
+.comment {
+    margin: 2rem;
 }
 
 .navgoodlinks {
