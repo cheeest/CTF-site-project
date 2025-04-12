@@ -55,6 +55,8 @@ def osint():
 @app.route("/web/sql-injection", methods=('GET', 'POST'))
 def websql():
     if request.method == 'POST':
+        if 'login' not in (keys := request.form.keys()) or 'pass' not in keys:
+            abort(400)
         login = request.form['login']
         password = request.form['pass']
         cursor = get_db().cursor()
@@ -198,9 +200,9 @@ def success_login():
         return render_template('success-sql.html', flag=flag)
     abort(404)
 
-@app.errorhandler(werkzeug.exceptions.NotFound)
-def handle_bad_request(e):
-    return '<img src="https://http.cat/404.jpg">', 404
+@app.errorhandler(werkzeug.exceptions.HTTPException)
+def error_handler(e):
+    return f'<img src="https://http.cat/{e.code}.jpg">', e.code
 
 app.run(host="0.0.0.0", debug=False)
 connection.close()
