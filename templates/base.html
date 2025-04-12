@@ -3,6 +3,41 @@
 {% block content %}
 
 <div id="popup" class="sql-guide capsule-window">
+    <p class="simpletext" style="text-align: left"><a href="https://habr.com/ru/articles/190054/" class="hltext">Кодировки Base64 и Base32</a> - метод представления бинарных данных в виде текста, однако часто используется во всяких загадках, ARG и CTF как "шифр"</p>
+    <p class="simpletext" style="text-align: left">Как кодировать или декодировать Base64 и Base32? Обычно для этого используют онлайн утилиты, одна из самых удобных - <a href="https://gchq.github.io/CyberChef/" class="hltext">CyberChef</a>. Также полезно знать способ с Python, для этого есть отдельная библиотека:<span class="context" style="font-size: 0.9rem">(пример кода ниже)</span></p>
+    <pre><code class="codefont python">import base64
+
+data = "[данные]"
+
+#Для Base64:
+encoded_data64 = base64.b64encode(data)
+decoded_data64 = base64.b64decode(encoded_data64)
+
+#Для Base32:
+encoded_data32 = base64.b32encode(data)
+decoded_data32 = base64.b32decode(encoded_data32)
+    </code></pre>
+    <p class="simpletext" style="text-align: left">Также есть базовые утилиты для командной строки:<span class="context" style="font-size: 0.9rem">(пример команд ниже)</span></p>
+    <pre><code class="codefont bash">base64 [файл] > [закодированный файл] #Для кодировки файлов
+    echo -n "Ваш текст" | base64 #Для кодировки текста
+    base64 -d [Закодированный файл] > [Декодированный документ] #Для декодировки файлов
+    echo -d "Закодированный текст" | base64  #Для декодировки текста
+
+    </code></pre>
+    <p class="simpletext" style="text-align: left">Как различать Base64 и Base32? Они используют разный набор символов для представления данных:<span class="context" style="font-size: 0.9rem">(пример ниже)</span></p>
+     <pre><code class="codefont bash">
+         #Алфавит Base64 (чувствителен к регистру):
+            ABCDEFGHIJKLMNOPQRSTUVWXYZ
+            abcdefghijklmnopqrstuvwxyz
+            0123456789 + /
+
+         #Алфавит Base32 (нечувствителен к регистру):
+            ABCDEFGHIJKLMNOPQRSTUVWXYZ
+            234567
+     </code></pre>
+    <p class="simpletext" style="text-align: left">Различать их стоит по наличию символов <span class="mono">0, 1, I, L, O</span> - у Base32 их нет. Символ <span class="mono">=</span> используется как заполнитель, для необходимой длины строки, не стоит пытаться распознать по ним кодировку.</p>
+
+
     <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
 </div>
 <div class="container">
