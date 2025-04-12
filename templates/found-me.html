@@ -1,14 +1,21 @@
-{% extends 'utils/_task.html' %} <!--Тебе сюда!!!!-->
+{% extends 'utils/_task.html' %}
 
 {% block content %}
 {% include 'utils/_forensicsidenav.html' %}
-
+<!--Тебе сюда!!!!-->
 <div id="popup" class="sql-guide capsule-window">
+    <p class="simpletext" style="text-align: left">Попробуй вставить ссылку на эту страницу в поисковик и провести поиск, а не просто перейти по ней. Твоя задача перейти на <a class="hltext" href="https://g.codrs.ru/Chest/CTF-site-project">Gitea</a> или <a class="hltext" href="https://github.com/cheeest/CTF-site-project">GitHub</a> проекта</p>
+    <p class="simpletext" style="text-align: left">Также если в браузере открыть код элементов, то можно заметить комментарии с подсказками, намекающими на GitHub и Gitea</p>
+    <p class="simpletext" style="text-align: left">Перейдя в файл <a class="hltext" href="https://g.codrs.ru/Chest/CTF-site-project/src/branch/master/app.pyt">app.py</a> в нём можно найти следующие строки:<span class="context" style="font-size: 0.9rem">(пример ниже)</span></p>
+    <pre><code class="codefont python">@app.route("/osint/found_me", methods=('GET', 'POST'))
+def osintfound():
+    Y0u_Fin4ly_F0und_7his = 'C4TchFl4g{Pls_supp0rt_my_pr0j3ct}'</code></pre>
+    <p class="simpletext" style="text-align: left">Собственно на строке 30 и есть флаг</p>
     <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
 </div>
 <div class="container">
     <div class="small capsule-window info1" style="height: auto;">
-        <p class="simpletext"><abbr class="hltext" title="Смотри подсказку(кнопка снизу слева)"></abbr></p>
+        <p class="simpletext">Просто найди флаг.. Так уж и быть: я разрешаю тебе использовать <abbr class="hltext" title="Смотри подсказку(кнопка снизу слева)">Google</abbr></p>
     </div>
     <div class="flag-input">
         <h3 class="header" style="text-align:left">Введите ответ:</h3>
@@ -32,4 +39,4 @@
     {% endif %}
 {% endblock %}
 
-<!--Дада, ты почти нашёл флаг.. Раз уж ты тут, может возьмёшь его напрямую из кода его одобрения? Только не смотри на другие флаги там! Так будет нечестно!-->
+<!--Дада, ты почти нашёл флаг.. Раз уж ты тут, может возьмёшь его напрямую из кода? Только не смотри на другие флаги там! Так будет нечестно!-->

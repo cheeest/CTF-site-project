@@ -21,7 +21,7 @@
     <p class="simpletext" style="text-align: left">Открыв файл Shadow нужно найти хеш пароля суперпользователя - root. Строчка будет выглядеть так:</p>
     <pre><code class="codefont bash">root:$5$$186cf774c97b60a1c106ef718d10970a6a06e06bef89553d9ae65d938a886eae:19111:0:::::</code></pre>
     <p class="simpletext" style="text-align: left">Видно, что алгоритм хеширования - <span class="mono">$5$</span> - sha-256, а соли вовсе нет. Можно попробовать подобрать пароль к хешу.</p>
-    <p class="simpletext" style="text-align: left">Для подбора пароля можно использовать онлайн утилиты, по типу <a class="hltext" href="https://crackstation.net/">Crack Station</a> или утилитой по-типу <a class="hltext" href="https://hashcat.net/hashcat/">hashcat</a>(именно она базово предустановленна в Kali:
+    <p class="simpletext" style="text-align: left">Для подбора пароля можно использовать онлайн утилиты, по типу <a class="hltext" href="https://crackstation.net/">Crack Station</a> или утилитой по-типу <a class="hltext" href="https://hashcat.net/hashcat/">hashcat</a>- именно она базово предустановленна в Kali:<span class="context" style="font-size: 0.9rem">(пример команды ниже)</span></p>
     <pre><code class="codefont bash">hashcat -m 1470 [файл с хешом или сам хеш строкой] [словарь (в Kali базовый Rockyou)]</code></pre>
     <p class="simpletext" style="text-align: left">Опция -m отвечат за тип хеша, в данном случае <span class="mono">1470 - sha-256</span></p>
     <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
