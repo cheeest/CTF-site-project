@@ -1,8 +1,27 @@
 {% extends 'utils/_task.html' %}
-{% include 'utils/_forensicsidenav.html' %}
+
 {% block content %}
+{% include 'utils/_forensicsidenav.html' %}
 
 <div id="popup" class="sql-guide capsule-window">
+    <p class="simpletext" style="text-align: left"><a class="hltext" href="https://manpages.ubuntu.com/manpages/trusty/ru/man5/shadow.5.html">Файл Shadow</a> - это системный файл в Linux, который хранит хэшированные пароли пользователей.</p>
+    <p class="simpletext" style="text-align: left">Shadow содержит в себе информацию в следующем виде:</p>
+    <pre><code class="codefont bash">username:password_hash:last_change:min:max:warn:inactive:expire:reserved
+
+    1 username - имя пользователя
+    2 password_hash - Хеш пароля :$алгоритм шифрования$соль$хеш:
+    3 last_change - Последнее изменение (в днях с 1970)
+    4 min - Минимум дней между сменами пароля
+    5 max - Максимум дней, через которые пароль надо сменить
+    6 warn -  За сколько дней до истечения пароля предупредить
+    7 inactive - Сколько дней после истечения пароль остаётся активен
+    8 expire - День, когда аккаунт полностью истекает (в днях с 1970)
+    9 reserved - Зарезервировано для будущего использования
+    </code></pre>
+    <p class="simpletext" style="text-align: left">Открыв файл Shadow нужно найти хеш пароля суперпользователя - root. Строчка будет выглядеть так:</p>
+    <pre><code class="codefont bash">root:$5$$186cf774c97b60a1c106ef718d10970a6a06e06bef89553d9ae65d938a886eae:19111:0:::::</code></pre>
+    <p class="simpletext" style="text-align: left">Видно, что алгоритм хеширования - <span class="mono">$5$</span> - sha-256, а соли вовсе нет. Можно попробовать подобрать пароль к хешу.</p>
+
     <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
 </div>
 <div class="container">
