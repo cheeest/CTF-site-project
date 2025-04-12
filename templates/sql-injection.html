@@ -1,6 +1,8 @@
 {% extends 'utils/_task.html' %}
-{% include 'utils/_websidenav.html' %}
+
 {% block content %}
+{% include 'utils/_websidenav.html' %}
+
     <div id="popup" class="sql-guide capsule-window">
         <p class="simpletext" style="text-align: left"><a class="hltext" href="https://book.hacktricks.wiki/en/pentesting-web/sql-injection/index.html?highlight=sql%20inje#what-is-sql-injection">SQL-инъекция</a> - уязвимость системы, позволяющая пользователю ввести вредоносный код в SQL-запрос.<br />
         <p class="simpletext" style="text-align: left">Как именно это работает? Все дело в том, что данные, которые ввёл пользователь, вставляются в запрос напрямую <span class="context" style="font-size: 0.9rem">(пример кода с сервера ниже)</span></p>
