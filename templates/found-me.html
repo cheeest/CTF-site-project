@@ -1,0 +1,35 @@
+{% extends 'utils/_task.html' %} <!--Тебе сюда!!!!-->
+
+{% block content %}
+{% include 'utils/_forensicsidenav.html' %}
+
+<div id="popup" class="sql-guide capsule-window">
+    <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
+</div>
+<div class="container">
+    <div class="small capsule-window info1" style="height: auto;">
+        <p class="simpletext"><abbr class="hltext" title="Смотри подсказку(кнопка снизу слева)"></abbr></p>
+    </div>
+    <div class="flag-input">
+        <h3 class="header" style="text-align:left">Введите ответ:</h3>
+        <form action="/osint/found_me" method="post" class="simpletext">
+            <input class="inpt" type="text" name="user_flag" style="width: 100%; height: 1.25rem; margin: 0">
+            <input type="submit" value="Submit" class="btn1" style="margin-top: 1.25rem">
+        </form>
+    </div>
+</div>
+
+<!--Спустись еще чуть ниже -->
+
+    {% if error %}
+        <div id="error"> <p>{{ error }}</p> </div>
+    {% elif success_flag %}
+        <div class="task-done">
+            <h1 class="header">Вы прошли задание!</h1>
+            <img class="done" src="{{ url_for('static', filename='imgs/done_icon.png') }}">
+            <a href="{{ url_for('osint') }}" class="usable-context" style="text-align: canter; margin: 1rem; padding: 1rem;"> < Вернуться к заданиям > </a>
+        </div>
+    {% endif %}
+{% endblock %}
+
+<!--Дада, ты почти нашёл флаг.. Раз уж ты тут, может возьмёшь его напрямую из кода его одобрения? Только не смотри на другие флаги там! Так будет нечестно!-->

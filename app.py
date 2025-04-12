@@ -4,6 +4,7 @@ import sqlite3
 from random import getrandbits
 from func import *
 import base64
+#Вот сюда тебе и надо, начинающий мастер OSINT'а! Только не смотри другие флаги: кто посмотрит, тот ***** :>
 
 
 connection = sqlite3.connect('database.db')
@@ -23,6 +24,16 @@ connection.commit()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ca4ac4ada05f91a5790d2132992bfaed86df15c4d08f2dfe'
 DATABASE = 'database.db'
+
+@app.route("/osint/found_me", methods=('GET', 'POST'))
+def osintfound():
+    Y0u_Fin4ly_F0und_7his = 'C4TchFl4g{Pls_supp0rt_my_pr0j3ct}'
+    if request.method == 'POST':
+        user_flag = request.form['user_flag']
+        if user_flag == Y0u_Fin4ly_F0und_7his:
+            return render_template('found-me.html', flag=Y0u_Fin4ly_F0und_7his, success_flag='.')
+        return render_template('found-me.html', flag=Y0u_Fin4ly_F0und_7his, error='Ошибка: неверный флаг!')
+    return render_template('found-me.html')
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -176,9 +187,7 @@ def fhash():
         return render_template('hash.html', flag=flag_task5, error='Ошибка: неверный флаг!')
     return render_template('hash.html')
 
-@app.route("/osint/questions")
-def osintquestions():
-    return render_template('osint-questions.html')
+
 
 @app.route("/osint/geoguessr")
 def osintgeoguessr():
