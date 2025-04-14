@@ -4,6 +4,15 @@
 {% include 'utils/_forensicsidenav.html' %}
 
 <div id="popup" class="sql-guide capsule-window">
+    <p class="simpletext" style="text-align: left">У этого таска есть 2 явных решения:</p>
+    <p class="simpletext" style="text-align: left">1. Использовать знания, полученные в ходе решения задания <a class="hltext" href="{{ url_for('fmetadata') }}">Метаданные и как их найти</a>. Открыв метаданные данного фото и пролистав в самый низ можно увидеть координаты: <span class="context">(пример строк ниже)</span></p>
+    <pre><code class="codefont html">GPS Latitude : 60 deg 0' 43.30" N
+GPS Longitude : 30 deg 22' 43.70" E
+GPS Position : 60 deg 0' 43.30" N, 30 deg 22' 43.70" E </code></pre>
+    <p class="simpletext" style="text-align: left"> У нас есть координаты в градусах, секундах и минутах. Можем перевести их в десятичный формат и получаем координаты:</p>
+    <pre><code class="codefont html">60.012028, 30.378806</code></pre>
+    <p class="simpletext" style="text-align: left">Введя координаты в любые карты они покажут место в Санкт-Петербурге, расположенное на северо-востоке от станции метро <a class="hltext" href="https://yandex.ru/maps/-/CHbim08A">"Политехническая"</a>, рядом есть <a class="hltext" href="https://yandex.ru/maps/-/CHbiMWiB">Политехнический парк</a>, где располагается Политехнический университет Петра Великого. Именно ему принадлежит <a class="hltext" href="https://yandex.ru/maps/-/CHbiIL4q">Гидробашня</a>, о которой идёт речь в задании. Погуглив год её постройки, получаем ответ: 1905.</p>
+    <p class="simpletext" style="text-align: left">2. Провести поиск по картинке и узнать, что территория с жёлтыми зданиями это <a class="hltext" href="https://yandex.ru/maps/-/CHbiIGOr">Военная академия связи</a>. Можно зайти на панорамы карт и определить точное место съёмки и даже увидеть верхушку нужной нам башни. Узнав, что это <a class="hltext" href="https://yandex.ru/maps/-/CHbiIL4q">Гидробашня</a> Политехнического университета Петра великого можно узнать год её постройки - всё тот же 1905</p>
     <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
 </div>
 
