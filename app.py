@@ -189,9 +189,15 @@ def fhash():
 
 
 
-@app.route("/osint/geoguessr")
+@app.route("/osint/mapmaster", methods=('GET', 'POST'))
 def osintgeoguessr():
-    return render_template('osint-geoguessr.html')
+    flag_task6 = "C4TchFl4g{1905}"
+    if request.method == 'POST':
+        user_flag = request.form['user_flag']
+        if user_flag == flag_task6:
+            return render_template('mapmaster.html', flag=flag_task6, success_flag='.')
+        return render_template('mapmaster.html', flag=flag_task6, error='Ошибка: неверный флаг!')
+    return render_template('mapmaster.html')
 
 @app.route("/osint/really_hard_task")
 def osintrht():
