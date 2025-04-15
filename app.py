@@ -201,6 +201,12 @@ def osintgeoguessr():
 
 @app.route("/osint/really_hard_task")
 def osintrht():
+    flag_task7 = "C4TchFl4g{13ts_p14y_min3cr4ft_tog3th3r}"
+    if request.method == 'POST':
+        user_flag = request.form['user_flag']
+        if user_flag == flag_task7:
+            return render_template('osint-hardtask.html', flag=flag_task7, success_flag='.')
+        return render_template('osint-hardtask.html', flag=flag_task7, error='Ошибка: неверный флаг!')
     return render_template('osint-hardtask.html')
 
 @app.route("/web/success_login-sqltask", methods=('GET', 'POST'))
