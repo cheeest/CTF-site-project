@@ -4,15 +4,16 @@
 {% include 'utils/_forensicsidenav.html' %}
 
 <div id="popup" class="sql-guide capsule-window">
+    <p class="simpletext" style="text-align: left">
     <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
 </div>
 <div class="container">
     <div class="small capsule-window info1" style="height: auto">
-        <p class="simpletext">Ты наверное уже смотрел Gitea или GitHub проекта.. Не находил там ничего странного? По-моему при разработке там остался один <abbr class="hltext" title="Смотри подсказку(кнопка снизу слева)">подозрительный файл</abbr>, сможешь посмотреть его?</p>
+        <p class="simpletext">Ты наверное уже видел Gitea или GitHub проекта.. Не находил там ничего странного? По-моему, при разработке там остался один <abbr class="hltext" title="Смотри подсказку(кнопка снизу слева)">подозрительный файл</abbr>, сможешь посмотреть его?</p>
     </div>
     <div class="flag-input">
         <h3 class="header" style="text-align:left">Введите ответ:</h3>
-        <form action="/forensic/metadata" method="post" class="simpletext">
+        <form action="/osint/really_hard_task" method="post" class="simpletext">
             <input class="inpt" type="text" name="user_flag" style="width: 100%; height: 1.25rem; margin: 0">
             <input type="submit" value="Submit" class="btn1" style="margin-top: 1.25rem">
         </form>
@@ -27,7 +28,7 @@
         <div class="task-done">
             <h1 class="header">Вы прошли задание!</h1>
             <img class="done" src="{{ url_for('static', filename='imgs/done_icon.png') }}">
-            <a href="{{ url_for('forensic') }}" class="usable-context" style="text-align: canter; margin: 1rem; padding: 1rem;"> < Вернуться к заданиям > </a>
+            <a href="{{ url_for('osint') }}" class="usable-context" style="text-align: canter; margin: 1rem; padding: 1rem;"> < Вернуться к заданиям > </a>
         </div>
     {% endif %}
 {% endblock %}

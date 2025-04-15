@@ -199,9 +199,9 @@ def osintgeoguessr():
         return render_template('mapmaster.html', flag=flag_task6, error='Ошибка: неверный флаг!')
     return render_template('mapmaster.html')
 
-@app.route("/osint/really_hard_task")
+@app.route("/osint/really_hard_task", methods=('GET', 'POST'))
 def osintrht():
-    flag_task7 = "C4TchFl4g{13ts_p14y_min3cr4ft_tog3th3r}"
+    flag_task7 = "C4TchFl4g{13ts_p14y_min3cr4ft_t0g3th3r}"
     if request.method == 'POST':
         user_flag = request.form['user_flag']
         if user_flag == flag_task7:
