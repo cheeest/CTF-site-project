@@ -66,8 +66,6 @@ def osint():
 @app.route("/web/sql-injection", methods=('GET', 'POST'))
 def websql():
     if request.method == 'POST':
-        if 'login' not in (keys := request.form.keys()) or 'pass' not in keys:
-            abort(400)
         login = request.form['login']
         password = request.form['pass']
         cursor = get_db().cursor()
@@ -79,9 +77,56 @@ def websql():
         return redirect(url_for('success_login'), code=302)
     return render_template('sql-injection.html')
 
-@app.route("/web/idor")
+@app.route("/web/success_login-sqltask", methods=('GET', 'POST'))
+def success_login():
+    flag = session.get('sql_flag')
+    if request.method == 'POST':
+        user_flag = request.form['user_flag']
+        if user_flag == flag:
+            return render_template('success-sql.html', flag=flag, success_flag='.')
+        return render_template('success-sql.html', flag=flag, error='Ошибка: неверный флаг!')
+    if flag:
+        return render_template('success-sql.html', flag=flag)
+    abort(404)
+
+idor_main_users = {}
+
+@app.route("/web/idor", methods=('GET', 'POST'))
 def webidor():
+    if request.method == 'POST':
+        if 'user_flag' in request.form.keys():
+            flag = session.get('idor_flag')
+            user_flag = request.form['user_flag']
+            if user_flag == flag and 'idor_id' in session.keys() and session['idor_id'] in idor_main_users.keys():
+                del idor_main_users[session['idor_id']]
+                return render_template('idor.html', flag=flag, success_flag='.')
+            return render_template('idor.html', flag=flag, error='Ошибка: неверный флаг!')
+
+        login = request.form['login']
+        mail =  request.form['mail']
+        password = request.form['pass']
+        if not login:
+            return render_template('idor.html', error='Ошибка: не оставляйте себя без имени!')
+        if not password:
+            return render_template('idor.html', error='Ошибка: Пароль важен, заполните поле!')
+
+        session['idor_flag'] = f'C4TchFl4g{{{hex(getrandbits(45))[2:]}}}'
+        session['idor_id'] = id = getrandbits(8)
+        idor_main_users[id] = {'login': login,'mail': mail}
+        return redirect(url_for('webidor_user', id=session['idor_id']), code=302)
     return render_template('idor.html')
+
+
+@app.route("/web/idor/user_id<int:id>", methods=('GET', 'POST'))
+def webidor_user(id):
+    if 'idor_id' not in session.keys():
+        abort(404)
+    if id <= 32:
+        idor_users = {0: ('admin', 'popa'), 1: ('an', 'fffff'), 2: ('adm', 'qweqewqeqweqwe'), 3: ('admin', session['idor_flag']), 4: ('admin', ''), 5: ('admin', ''), 6: ('admin', ''), 7: ('admin', ''), 8: ('admin', ''), 9: ('admin', ''), 10: ('admin', ''), 11: ('admin', ''), 12: ('admin', ''), 13: ('admin', ''), 14: ('admin', ''), 15: ('admin', '')}
+        return render_template('idor_user.html', user=idor_users[id])
+    if id not in idor_main_users.keys():
+        abort(404)
+    return render_template('idor-main-user.html', login=idor_main_users[id]['login'], mail=idor_main_users[id]['mail'])
 
 
 @app.route("/web/path-traversal", methods=('GET', 'POST'))
@@ -99,8 +144,6 @@ def webpt():
         return send_file(filename)
     except FileNotFoundError:
         abort(404)
-    
-
 
 @app.route("/web/ssti", methods=('GET', 'POST'))
 def webssti():
@@ -224,17 +267,7 @@ def osintrht():
         return render_template('osint-hardtask.html', flag=flag_task7, error='Ошибка: неверный флаг!')
     return render_template('osint-hardtask.html')
 
-@app.route("/web/success_login-sqltask", methods=('GET', 'POST'))
-def success_login():
-    flag = session.get('sql_flag')
-    if request.method == 'POST':
-        user_flag = request.form['user_flag']
-        if user_flag == flag:
-            return render_template('success-sql.html', flag=flag, success_flag='.')
-        return render_template('success-sql.html', flag=flag, error='Ошибка: неверный флаг!')
-    if flag:
-        return render_template('success-sql.html', flag=flag)
-    abort(404)
+
 
 @app.errorhandler(werkzeug.exceptions.HTTPException)
 def error_handler(e):

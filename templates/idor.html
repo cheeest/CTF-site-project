@@ -1,0 +1,40 @@
+{% extends 'utils/_task.html' %}
+
+{% block content %}
+{% include 'utils/_forensicsidenav.html' %}
+
+<div id="popup" class="sql-guide capsule-window">
+    <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
+</div>
+
+<div class="container">
+    <div class="small capsule-window info1" style="height: auto;">
+        <form action="/web/idor" method="post" class="simpletext">
+            <p class="simpletext">Блин, я потерял страничку пользователя с почтой <abbr class="hltext" title="Смотри подсказку(кнопка снизу слева)">supercat@codrs.ru</abbr>. Можешь поискать? Для начала войди на сайт.</p>
+            <div class="small-container" ><p>Логин: <p class="hidden">.</p> </p> <input type="text" name="login" class="inpt" /></div>
+            <div class="small-container" ><p>Почта: <p class="hidden">.</p> </p> <input type="text" name="mail" class="inpt" /></div>
+            <div class="small-container"><p>Пароль:</p> <input type="password" name="pass" class="inpt"/></div>
+            <input type="submit" value="Войти" class="btn1">
+        </form>
+    </div>
+</div>
+
+    <div class="flag-input">
+        <h3 class="header" style="text-align:left">Введите ответ:</h3>
+        <form action="/web/idor" method="post" class="simpletext">
+            <input class="inpt" type="text" name="user_flag" style="width: 100%; height: 1.25rem; margin: 0">
+            <input type="submit" value="Submit" class="btn1" style="margin-top: 1.25rem">
+        </form>
+    </div>
+</div>
+
+    {% if error %}
+        <div id="error"> <p>{{ error }}</p> </div>
+    {% elif success_flag %}
+        <div class="task-done">
+            <h1 class="header">Вы прошли задание!</h1>
+            <img class="done" src="{{ url_for('static', filename='imgs/done_icon.png') }}">
+            <a href="{{ url_for('web') }}" class="usable-context" style="text-align: canter; margin: 1rem; padding: 1rem;"> < Вернуться к заданиям > </a>
+        </div>
+    {% endif %}
+{% endblock %}

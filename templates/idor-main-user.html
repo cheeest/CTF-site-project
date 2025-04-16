@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+    {% include 'utils/_head.html' %}
+<body>
+    {% include 'utils/_header.html' %}
+    <div class="container" style="max-width:70%; justify-content: space-between;min-width: 40rem; flex-wrap: nowrap">
+        <div class="profile">
+            <h2 class="header" style="text-align:left">Ваш Профиль:</h2>
+            <p class="simpletext" style="text-align:left">Логин: <span class="context">{{ login }}</span></p>
+            <p class="simpletext" style="text-align:left">Почта: <span class="context">{{ mail }}</span></p>
+        </div>
+    </div>
+    {% include 'utils/_websidenav.html' %}
+
+    <div id="success"> <p>Вход произведён успешно!</p> </div>
+
+</body>
+</html>
