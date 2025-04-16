@@ -83,9 +83,24 @@ def websql():
 def webidor():
     return render_template('idor.html')
 
-@app.route("/web/path-traversal")
+
+@app.route("/web/path-traversal", methods=('GET', 'POST'))
 def webpt():
-    return render_template('path-traversal.html')
+    flag_task3 = 'С4Tch_Fl4g{Y0u_Find_4_littl3_kitty}'
+    if request.method == 'POST':
+        user_flag = request.form['user_flag']
+        if user_flag == flag_task3:
+            return render_template('path-traversal.html', flag=flag_task3, success_flag='.')
+        return render_template('path-traversal.html', flag=flag_task3, error='Ошибка: неверный флаг!')
+    filename = request.args.get("file")
+    if not filename:
+        return render_template('path-traversal.html')
+    try:
+        return send_file(filename)
+    except FileNotFoundError:
+        abort(404)
+    
+
 
 @app.route("/web/ssti", methods=('GET', 'POST'))
 def webssti():
