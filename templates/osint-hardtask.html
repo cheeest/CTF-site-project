@@ -4,7 +4,11 @@
 {% include 'utils/_forensicsidenav.html' %}
 
 <div id="popup" class="sql-guide capsule-window">
-    <p class="simpletext" style="text-align: left">
+    <p class="simpletext" style="text-align: left">Это задание чем-то хоже схоже с ARG. Стоит просто следовать подсказкам и быть внимательным, переходя от этапа к этапу.</p>
+    <p class="simpletext" style="text-align: left">В самом задании есть намёк на <a class="hltext" href="https://github.com/cheeest/CTF-site-project">GitHub</a> или <a class="hltext" href="https://g.codrs.ru/Chest/CTF-site-project">Gitea</a> проекта. Перейдя туда можно найти файл <a class="hltext" href="https://g.codrs.ru/Chest/CTF-site-project/src/branch/master/weird_file.txt">weird_file.txt</a>, где будет текст с битой кодировкой. Вернув кодировку а её исходный вид можно прочитать текст, где ещё в base64 зашифрована важная информация:</p>
+    <pre><code class="codefont python">Домен майнкрафт сервера (версия 1.7.4 - 1.21.4) - ctf.codrs.ru
+При входе вписать команду - /server mega_minecraft_ctf</code></pre>
+    <p class="simpletext" style="text-align: left">Зайдя на сервер нужно пройти мини-регистрацию и вписать вышеуказанную команду. У спавна можно увидеть табличку с обычным квадратным уравнением, ответами на которое будут координаты <span class="mono">x-42 и z-69</span>. Рядом стоит взять лодку, наступив на нажимную пластину, и поплыть к координатам. Ровно на месте будет телепорт наверх, откуда можно будет наблюдать флаг</p>
     <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
 </div>
 <div class="container">
