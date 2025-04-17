@@ -4,6 +4,14 @@
 {% include 'utils/_websidenav.html' %}
 
 <div id="popup" class="sql-guide capsule-window">
+    <p class="simpletext" style="text-align: left"><a class="hltext" href="https://portswigger.net/web-security/file-path-traversal">Path Traversal</a> - уязвимость, позволяющая пользователю получить доступ к файлам на хосте при помощи уязвимого параметра URL.</p>
+    <p class="simpletext" style="text-align: left">Как это работает? Для просмотра или скачивания файла на сайте есть условная кнопка, при нажатии на неё, в путь прибавляется параметр, аргумент которого - путь к файлу:<span class="context">(пример тега ниже)</span></p>
+    <pre><code class="codefont html"> &lt;button class="big_btn" onclick="location.href='/cats/download_cat?file=static/imgs/cat.jpg'"></code></pre>
+    <p class="simpletext" style="text-align: left">Да, это просто самый обычный путь, который без проверок принимается сервером, на что в ответ, пользователь получает запрошенный файл:<span class="context">(пример кода ниже)</span></p>
+    <pre><code class="codefont python"> filename = request.args.get("file")
+        return send_file(filename)</code></pre>
+    <p class="simpletext" style="text-align: left">Получается можно вписать туда что-то своё? Именно! В задании от нас хотят флаг, который лежит в <span class="mono">.txt</span> файле. Получается мы можем изменить параметр заменой <span class="mono">cat.jpg -> flag.txt</span></p>
+    <p class="simpletext" style="text-align: left">Есть и более жестокая эксплуатация сей уязвимости: можно откатиться на директории назад, дойти до корня и взять важный системный файл. Как это сделать? <span class="mono">../</span> вернёт нас на директорию назад. Так можем попробовать снова изменить путь: <span class="mono">cat.jpg -> ../../app.py</span>, что вернёт нам соответствующий <a calss="hltext" hraf="https://g.codrs.ru/Chest/CTF-site-project/src/branch/master/app.py">python файл</a></p>
     <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
 </div>
 

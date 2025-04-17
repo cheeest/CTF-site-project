@@ -7,7 +7,6 @@
     ('webidor',  "Уязвимость IDOR"),
     ('webpt', "Уязвимость Path Traversal"),
     ('webssti',  "Уязвимость SSTI"),
-    ('webpsguide',  "Немного о PortSwigger"),
 ) %}
     {%- if request.path != url_for(link) %}
         <a href="{{ url_for(link) }}" class="link">{{ text }}</a>

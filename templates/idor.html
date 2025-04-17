@@ -4,9 +4,9 @@
 {% include 'utils/_websidenav.html' %}
 
 <div id="popup" class="sql-guide capsule-window">
-    <p class="simpletext" style="text-align: left"><a class="hltext" hraf="">IDOR(Insecure direct object references)</a> - уязвимость, позволяющая пользователю получить доступ к объекту (к которому он доступ иметь не должен) напрямую, без проверок, например по ID</p>
+    <p class="simpletext" style="text-align: left"><a class="hltext" href="https://portswigger.net/web-security/access-control/idor">IDOR(Insecure direct object references)</a> - уязвимость, позволяющая пользователю получить доступ к объекту (к которому он доступ иметь не должен) напрямую, без проверок, например по ID</p>
     <p class="simpletext" style="text-align: left">Как именно это работает? На сервере просто отсутствую проверки, которые не дают пользователю реализовать доступ к определённым объектам. На сервере это может выглядеть так: <span class="context">(привер кода ниже)</span></p>
-    <pre><code class="codefont python">@app.route("/web/idor/user_id< int:id >")
+    <pre><code class="codefont python">@app.route("/web/idor/user_id&lt;int:id>")
 def user(id):
         return render_template(f'user_id{id}.html')</code></pre>
     <p class="simpletext" style="text-align: left">Грубо говоря, мы можем ввести ID в путь и получить приватную страницу пользователя<span class="context">(конкретно тут она не выглядит сильно приватной, но всё же)</span>, ID которого ввели</p>
