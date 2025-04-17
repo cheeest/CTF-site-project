@@ -121,7 +121,7 @@ def webidor():
 def webidor_user(id):
     if 'idor_id' not in session.keys():
         abort(404)
-    if id <= 16:
+    if id <= 15:
         idor_users = {0: ('admin', 'superadmin@codrs.ru', 'Самый крутой админ EVER!!! Не согласен - не прав!'), 1: ('Y0ur_m0m', 'l0ser@codrs.ru', 'Ха-ха! Тупой юзер, ******, **** и *****'), 2: ('meg4_c4t', 'meowmeow@codrs.ru', 'Мяу-мяу, мяу-мяу... мяу-мяу, мяу-мяу'), 3: ('Pepeg4', 'pepeg@codrs.ru', 'Pepe love you too'), 4: ('ChestWithCat', 'chast@codrs.ru', 'Сундук из майнкрафта. На сундуке кот. Есть рыба, кота приручить?'), 5: ('legacy_user', 'legacy@coders-squad.com', 'А вот прошлый домен был лучше! Продались российским корпорациям!!!!!'), 6: ('m&ms', 'm&ms_lover@codrs.ru', 'Ставлю лайки за покупку m&ms, писать в ТГ'), 7: ('am0ng US', 'US_agent@gmail.com','Russishe Sweine!'), 8: ('anime_girl', 'megumin@codrs.ru', ''), 9: (session['idor_flag'], 'supercat@codrs.ru', 'О, смотри! Там флаг!!! Ты нашёл:3'), 10: ('b0ss_0f_this-GYM', 'b0ss@codrs.ru', 'И что же ты хотел увидеть в описании у Босса качалки?'), 11: ('CS2_Destroyer', 'player777@codrs.ru', 'Погнали в Напы выскочим, размотаем всех. Не играешь? Я в соло вытащу, а ты посмотришь'), 12: ('VerySweetBread', 'sweetbread@codrs.ru'), 13: ('pupok', 'pup_zemli@codrs.ru', 'Whait.. WHAT?!'), 14: ('secret_KGB_agent', 'b0rn_in_US4@codrs.su', 'Союз нерушимый республик свободных!'), 15: ('nikitata', '1ida_1over@codrs.ru', 'Раст победа?')}
         return render_template('idor_user.html', user=idor_users[id])
     if id not in idor_main_users.keys():
@@ -259,7 +259,7 @@ def osintgeoguessr():
 
 @app.route("/osint/really_hard_task", methods=('GET', 'POST'))
 def osintrht():
-    flag_task7 = "C4TchFl4g{13ts_p14y_min3cr4ft_t0g3th3r}"
+    flag_task7 = "C4Tch_Fl4g{13ts_p14y_min3cr4ft_t0g3th3r}"
     if request.method == 'POST':
         user_flag = request.form['user_flag']
         if user_flag == flag_task7:
