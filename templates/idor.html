@@ -1,9 +1,18 @@
 {% extends 'utils/_task.html' %}
 
 {% block content %}
-{% include 'utils/_forensicsidenav.html' %}
+{% include 'utils/_websidenav.html' %}
 
 <div id="popup" class="sql-guide capsule-window">
+    <p class="simpletext" style="text-align: left"><a class="hltext" hraf="">IDOR(Insecure direct object references)</a> - уязвимость, позволяющая пользователю получить доступ к объекту (к которому он доступ иметь не должен) напрямую, без проверок, например по ID</p>
+    <p class="simpletext" style="text-align: left">Как именно это работает? На сервере просто отсутствую проверки, которые не дают пользователю реализовать доступ к определённым объектам. На сервере это может выглядеть так: <span class="context">(привер кода ниже)</span></p>
+    <pre><code class="codefont python">@app.route("/web/idor/user_id< int:id >")
+def user(id):
+        return render_template(f'user_id{id}.html')</code></pre>
+    <p class="simpletext" style="text-align: left">Грубо говоря, мы можем ввести ID в путь и получить приватную страницу пользователя<span class="context">(конкретно тут она не выглядит сильно приватной, но всё же)</span>, ID которого ввели</p>
+    <p class="simpletext" style="text-align: left">Для решения этого задания стоит посмотреть на путь, и заметить, что там есть id : <span class = mono>ctf.codrs.ru/web/idor/user_id184</span>. Можно попробовать поменять ID и обнаружить, что нас переносит на странички других пользователей.<span class="context">ID, на которых есть странички - Ваш ID и числа от 0 до 15</span></p>
+    <p class="simpletext" style="text-align: left">Походив поп рофилям пользователей можно увидеть, что у одного из них <span class="context">(ID 9)</span> Имя пользователя - флаг.</p>
+    <p class="simpletext" style="text-align: left">Далее стоит вернуться на главную, используя стрелочку назад в самом браузере, и ввести флаг в соответствующее поле. Будьте вниметельны! После каждого нажатия кнопки <span class="mono">Войти</span> флаг перегенерируется.</p>
     <span class="close-btn usable-context" onclick="hidePopup()">скрыть</span>
 </div>
 
@@ -11,13 +20,12 @@
     <div class="small capsule-window info1" style="height: auto;">
         <form action="/web/idor" method="post" class="simpletext">
             <p class="simpletext">Блин, я потерял страничку пользователя с почтой <abbr class="hltext" title="Смотри подсказку(кнопка снизу слева)">supercat@codrs.ru</abbr>. Можешь поискать? Для начала войди на сайт.</p>
-            <div class="small-container" ><p>Логин: <p class="hidden">.</p> </p> <input type="text" name="login" class="inpt" /></div>
-            <div class="small-container" ><p>Почта: <p class="hidden">.</p> </p> <input type="text" name="mail" class="inpt" /></div>
-            <div class="small-container"><p>Пароль:</p> <input type="password" name="pass" class="inpt"/></div>
+            <div class="small-container" style="justify-content: center;" ><p>Логин: <p class="hidden">.</p> </p> <input type="text" name="login" class="inpt" /></div>
+            <div class="small-container" style="justify-content: center;"><p>Почта: <p class="hidden">.</p> </p> <input type="text" name="mail" class="inpt" /></div>
+            <div class="small-container" style="justify-content: center;"><p>Пароль:</p> <input type="password" name="pass" class="inpt"/></div>
             <input type="submit" value="Войти" class="btn1">
         </form>
     </div>
-</div>
 
     <div class="flag-input">
         <h3 class="header" style="text-align:left">Введите ответ:</h3>
